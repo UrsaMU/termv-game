@@ -1,6 +1,6 @@
 {
   "name": "@ursamu/sprawl-plugin",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Sprawl Goons: Upgraded system plugin for UrsaMU.",
   "exports": "./index.ts",
   "tasks": {
@@ -27,7 +27,8 @@
       "README.md",
       "FIRST-HOUR.md",
       "CHANGELOG.md",
-      "LICENSE"
+      "LICENSE",
+      "src"
     ],
     "exclude": [
       "tests",
