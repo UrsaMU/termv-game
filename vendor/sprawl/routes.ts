@@ -70,8 +70,18 @@ async function splashJson(): Promise<Response> {
 
 async function splashJpg(): Promise<Response> {
   try {
-    const file = await Deno.readFile(SPLASH_FILE);
-    return new Response(file, {
+    let bytes: Uint8Array;
+    if (SPLASH_FILE.protocol === "file:") {
+      bytes = await Deno.readFile(SPLASH_FILE);
+    } else {
+      // JSR / remote package: static assets are HTTP(S) URLs, not local files.
+      const res = await fetch(SPLASH_FILE);
+      if (!res.ok) {
+        return Response.json({ error: "No splash file" }, { status: 404 });
+      }
+      bytes = new Uint8Array(await res.arrayBuffer());
+    }
+    return new Response(bytes, {
       headers: {
         "Content-Type": "image/jpeg",
         "Cache-Control": "public, max-age=3600",
