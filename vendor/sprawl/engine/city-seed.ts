@@ -146,6 +146,7 @@ async function ensureRoom(place: SeedPlace): Promise<{
   const mark = `${place.kind}:${place.slug}`;
   // Engine KV rooms use string flags + data.name (see builder / mush tests).
   const created = await dbojs.create({
+    id: crypto.randomUUID(),
     flags: "room",
     data: {
       name: place.roomName,

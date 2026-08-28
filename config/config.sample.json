@@ -8,7 +8,7 @@
     "http": 4203,
     "apiPort": 4203,
     "db": "data/typegraph.db",
-    "corsOrigins": "https://termv.ursamu.io,http://localhost:5173,http://127.0.0.1:5173",
+    "corsOrigins": "https://termv.ursamu.io,https://*.vercel.app,http://localhost:5173,http://127.0.0.1:5173",
     "plugins": [
       "@ursamu/builder",
       "@ursamu/channels",
@@ -26,7 +26,7 @@
   },
   "game": {
     "name": "Terminal Velocity",
-    "description": "Sprawl Goons: Upgraded — 2d6 cyberpunk on UrsaMU",
+    "description": "Sprawl Goons: Upgraded \u2014 2d6 cyberpunk on UrsaMU",
     "version": "0.1.0",
     "playerStart": "1",
     "text": {
@@ -42,9 +42,21 @@
   "plugins": {
     "channels": {
       "defaults": [
-        { "name": "Public", "alias": "pub", "lock": "connected" },
-        { "name": "Admin", "alias": "ad", "lock": "connected admin+" },
-        { "name": "Street", "alias": "st", "lock": "connected" }
+        {
+          "name": "Public",
+          "alias": "pub",
+          "lock": "connected"
+        },
+        {
+          "name": "Admin",
+          "alias": "ad",
+          "lock": "connected admin+"
+        },
+        {
+          "name": "Street",
+          "alias": "st",
+          "lock": "connected"
+        }
       ]
     },
     "site": {
@@ -55,14 +67,39 @@
       "themeDir": "theme",
       "skinCss": "/site/theme/installed/termv/site.css",
       "bannerImage": "/site/theme/installed/termv/imgs/header.png",
-      "telnet": "game.termv.ursamu.io:4201",
+      "telnet": "court.ursamu.io:4201",
       "playClient": "https://termv.ursamu.io/?embed=1",
       "nav": [
-        { "id": "home", "label": "Home", "href": "/", "order": 10 },
-        { "id": "wiki", "label": "Wiki", "href": "/wiki/", "order": 20 },
-        { "id": "help", "label": "Help", "href": "/help/", "order": 30 },
-        { "id": "chargen", "label": "Goon", "href": "/chargen", "order": 40 },
-        { "id": "play", "label": "Play", "href": "/play", "order": 50 }
+        {
+          "id": "home",
+          "label": "Home",
+          "href": "/",
+          "order": 10
+        },
+        {
+          "id": "wiki",
+          "label": "Wiki",
+          "href": "/wiki/",
+          "order": 20
+        },
+        {
+          "id": "help",
+          "label": "Help",
+          "href": "/help/",
+          "order": 30
+        },
+        {
+          "id": "chargen",
+          "label": "Goon",
+          "href": "/chargen",
+          "order": 40
+        },
+        {
+          "id": "play",
+          "label": "Play",
+          "href": "/play",
+          "order": 50
+        }
       ]
     },
     "globals": {

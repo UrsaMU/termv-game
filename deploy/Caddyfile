@@ -1,32 +1,50 @@
 # Terminal Velocity — game host edge
-# game.termv.ursamu.io → HTTP API :4203, /ws* → WS :4202
-# Client SPA lives on Vercel at termv.ursamu.io
+# Client: Vercel @ termv.ursamu.io (also sprawl-client.vercel.app)
+# Game: court.ursamu.io + game.termv.ursamu.io
 {
 	servers {
 		protocols h1 h2
 	}
 }
 
-game.termv.ursamu.io {
-	handle /ws* {
+court.ursamu.io, game.termv.ursamu.io {
+	@ws path /ws*
+	handle @ws {
 		reverse_proxy 127.0.0.1:4202 {
 			header_up Host {host}
 			header_up X-Real-IP {remote_host}
 			header_up X-Forwarded-For {remote_host}
 			header_up X-Forwarded-Proto {scheme}
+			header_up Origin {header.Origin}
 			flush_interval -1
 		}
 	}
 
-	handle {
-		encode gzip
-		# Allow Vercel client + local dev
-		header Access-Control-Allow-Origin *
-		reverse_proxy 127.0.0.1:4203
+	# CORS for Vercel client + local dev (engine may not emit ACAO on JSR core)
+	@preflight method OPTIONS
+	handle @preflight {
+		header Access-Control-Allow-Origin "{header.Origin}"
+		header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+		header Access-Control-Allow-Headers "Content-Type, Authorization, X-Socket-Id"
+		header Access-Control-Allow-Credentials "true"
+		header Access-Control-Max-Age "86400"
+		header Vary Origin
+		respond 204
 	}
-}
 
-# Optional: old court hostname → game host (or drop after cutover)
-court.ursamu.io {
-	redir https://game.termv.ursamu.io{uri} permanent
+	handle {
+		header Access-Control-Allow-Origin "{header.Origin}"
+		header Access-Control-Allow-Credentials "true"
+		header Vary Origin
+		# Allow Vercel iframe embed of /play if needed
+		header -X-Frame-Options
+		header Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; img-src 'self' data: https: http:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' ws: wss: https://termv.ursamu.io https://sprawl-client.vercel.app https://*.vercel.app; frame-ancestors https://termv.ursamu.io https://sprawl-client.vercel.app https://*.vercel.app 'self'; form-action 'self'"
+		encode gzip
+		reverse_proxy 127.0.0.1:4203 {
+			header_up Host {host}
+			header_up X-Real-IP {remote_host}
+			header_up X-Forwarded-For {remote_host}
+			header_up X-Forwarded-Proto {scheme}
+		}
+	}
 }
