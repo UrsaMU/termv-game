@@ -8,6 +8,7 @@ UrsaMU game server for **Sprawl Goons: Upgraded** — the backend for [termv.urs
 | Game API / site / admin | `https://game.termv.ursamu.io` |
 | WebSocket | `wss://game.termv.ursamu.io/ws` |
 | Telnet | `game.termv.ursamu.io:4201` |
+| Legacy alias | `https://court.ursamu.io` (same game process) |
 
 ## Ports (local process)
 

@@ -8,7 +8,7 @@
     "http": 4203,
     "apiPort": 4203,
     "db": "data/typegraph.db",
-    "corsOrigins": "https://termv.ursamu.io,https://*.vercel.app,http://localhost:5173,http://127.0.0.1:5173",
+    "corsOrigins": "https://termv.ursamu.io,https://sprawl-client.vercel.app,https://*.vercel.app,http://localhost:5173,http://127.0.0.1:5173",
     "plugins": [
       "@ursamu/builder",
       "@ursamu/channels",
@@ -67,7 +67,7 @@
       "themeDir": "theme",
       "skinCss": "/site/theme/installed/termv/site.css",
       "bannerImage": "/site/theme/installed/termv/imgs/header.png",
-      "telnet": "court.ursamu.io:4201",
+      "telnet": "game.termv.ursamu.io:4201",
       "playClient": "https://termv.ursamu.io/?embed=1",
       "nav": [
         {
