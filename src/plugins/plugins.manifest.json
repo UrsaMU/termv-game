@@ -1,0 +1,17 @@
+{
+  "build": "sprawl",
+  "plugins": [
+    { "name": "builder", "pkgName": "@ursamu/builder" },
+    { "name": "channel", "pkgName": "@ursamu/channels" },
+    { "name": "help", "pkgName": "@ursamu/help" },
+    { "name": "bbs", "pkgName": "@ursamu/bbs" },
+    { "name": "mail", "pkgName": "@ursamu/mail" },
+    { "name": "wiki", "pkgName": "@ursamu/wiki" },
+    { "name": "jobs", "pkgName": "@ursamu/jobs" },
+    { "name": "sprawl", "pkgName": "@ursamu/sprawl-plugin" },
+    { "name": "lang", "pkgName": "@ursamu/lang-plugin" },
+    { "name": "map", "pkgName": "@ursamu/map-plugin" },
+    { "name": "web", "pkgName": "@ursamu/web" },
+    { "name": "site", "pkgName": "@ursamu/site" }
+  ]
+}

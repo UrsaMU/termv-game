@@ -1,0 +1,3845 @@
+/**
+ * Terminal Velocity — installable UrsaMU public FE theme.
+ *
+ * Pack:    deno task pack
+ * Preview: deno task preview:open
+ * Install: Admin → Settings → Public site → Upload theme zip
+ *   or copy to theme/installed/termv/ with themeDir = "theme".
+ *
+ * Asset URLs assume install path:
+ *   /site/theme/installed/termv/site.css
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+
+@font-face {
+  font-family: "Cyber Grotesk";
+  src:
+    url("/site/theme/installed/termv/fonts/cyber-grotesk.woff2") format("woff2"),
+    url("/site/theme/installed/termv/fonts/cyber-grotesk.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Brand palette from termv-template */
+  --termv-dark: #0f0c23;
+  --termv-cream: #ffffff;
+  --termv-blue: #5fdaff;
+  --termv-purple: #2f366c;
+  --termv-purple-light: #61689e;
+
+  /* ── Surfaces ─────────────────────────────────────────────── */
+  --site-bg: var(--termv-dark);
+  --site-bg-elevated: #12102a;
+  --site-bg-surface: color-mix(in srgb, var(--termv-purple) 55%, #0a0818);
+  --site-bg-surface-2: color-mix(in srgb, var(--termv-purple) 70%, #0a0818);
+  --site-bg-code: color-mix(in srgb, var(--termv-purple) 50%, transparent);
+
+  /* ── Borders ──────────────────────────────────────────────── */
+  --site-border: color-mix(in srgb, var(--termv-cream) 50%, transparent);
+  --site-border-subtle: color-mix(in srgb, var(--termv-purple-light) 50%, transparent);
+  --site-border-strong: color-mix(in srgb, var(--termv-cream) 70%, transparent);
+
+  /* ── Text ─────────────────────────────────────────────────── */
+  --site-text: var(--termv-cream);
+  --site-text-secondary: color-mix(in srgb, var(--termv-cream) 85%, transparent);
+  --site-text-muted: color-mix(in srgb, var(--termv-cream) 50%, transparent);
+  --site-text-on-accent: var(--termv-dark);
+  --site-text-on-primary: var(--termv-dark);
+  --site-text-inverse: var(--termv-dark);
+
+  /* ── Accent (cyan terminal) ───────────────────────────────── */
+  --site-accent: var(--termv-blue);
+  --site-accent-hover: #8ae8ff;
+  --site-accent-muted: rgba(95, 218, 255, 0.16);
+  --site-accent-border: rgba(95, 218, 255, 0.55);
+  --site-accent-focus: rgba(95, 218, 255, 0.55);
+
+  --site-btn-bg: var(--termv-purple);
+  --site-btn-bg-hover: var(--termv-purple-light);
+  --site-btn-fg: var(--termv-cream);
+  --site-btn-default-bg: var(--termv-purple-light);
+  --site-btn-default-fg: var(--termv-cream);
+  --site-btn-default-border: var(--termv-purple-light);
+  --site-btn-outline-fg: var(--termv-purple-light);
+  --site-btn-outline-border: var(--termv-purple-light);
+
+  /* ── Status ───────────────────────────────────────────────── */
+  --site-success: #4ade9f;
+  --site-warning: #f0c14d;
+  --site-error: #ff8a8f;
+  --site-info: var(--termv-blue);
+
+  /* ── Type — same face as sprawl-client ────────────────────── */
+  --site-font-ui: "Share Tech Mono", ui-monospace, "SFMono-Regular", Menlo,
+    Consolas, monospace;
+  --site-font-display: "Share Tech Mono", ui-monospace, monospace;
+  --site-font-mono: "Share Tech Mono", ui-monospace, Menlo, Consolas, monospace;
+  --site-font-size: 14px;
+  --site-line-height: 1.5;
+
+  /* 1rem = 14px once html root is 14px (see rule below) */
+  --site-type-brand: 1rem;
+  --site-type-nav: 1rem;
+  --site-type-menu-title: 1rem;
+  --site-type-menu-link: 1rem;
+  --site-type-h1: 1rem;
+  --site-type-h2: 1rem;
+  --site-type-connect: 1rem;
+  --site-type-footer: 1rem;
+
+  /* ── Geometry — shell 1920 · main 848 · equal rails ─ */
+  --site-nav-h: 60px;
+  --site-banner-offset: 150px;
+  --site-sticky-top: 120px;
+  /* Shared L/R inset for nav + body + banner (must stay identical) */
+  --site-gutter: 40px;
+  --site-inline-pad: var(--site-gutter);
+  --site-max-w: 1920px; /* content frame max */
+  --site-main-max: 848px;
+  --site-aside-width: 300px;
+  --site-aside-min: 280px;
+  --site-aside-max: 400px;
+  --site-col-gap: clamp(1.5rem, 3vw, 3.125rem);
+  --site-search-h: 34px;
+  --site-search-below: 1rem;
+  --site-main-pad-inline: 0;
+  --site-radius-sm: 0;
+  --site-radius-md: 0;
+  --site-radius: 0;
+  --site-control-h: 2.125rem;
+
+  /* ── Scrollbars ───────────────────────────────────────────── */
+  --site-scrollbar-size: 8px;
+  --site-scrollbar-track: var(--termv-dark);
+  --site-scrollbar-thumb: var(--termv-purple-light);
+  --site-scrollbar-thumb-hover: var(--termv-purple);
+  --site-scrollbar-thumb-active: var(--termv-blue);
+  --site-scrollbar-corner: var(--termv-dark);
+
+  /* ── Art ──────────────────────────────────────────────────── */
+  --site-bg-image-top: url("/site/theme/installed/termv/imgs/background.png");
+  --site-bg-image-bottom: none;
+  --site-rule-image: url("/site/theme/installed/termv/imgs/hr.svg");
+  --site-search-icon: url("/site/theme/installed/termv/imgs/search.png");
+  --site-play-placeholder: color-mix(in srgb, var(--termv-cream) 45%, transparent);
+
+  --site-sep-top: url("/site/theme/installed/termv/imgs/sep-top.svg");
+  --site-sep-bottom: url("/site/theme/installed/termv/imgs/sep-bottom.svg");
+  /*
+   * Media seps = CSS hairline tail + native-size bracket cap.
+   * Never stretch sep-*.svg to 100% — that kills the tail.
+   * Open ends sit 25px in from the media edge.
+   */
+  --site-sep-h: 15px;
+  --site-sep-pad-y: 0;
+  --site-sep-top-offset: -7px;
+  --site-sep-bottom-offset: -7px;
+  /* bottom hairline sits this far above the cap */
+  --site-sep-bottom-tail-offset: 0px;
+  --site-sep-inset-end: 25px;
+  --site-sep-bracket-w: 53px;
+  --site-sep-line-color: rgba(255, 255, 255, 0.5);
+  --site-nav-tile: url("/site/theme/installed/termv/imgs/nav.png");
+
+  /*
+   * Default panel chrome (termv .panel) — every raised surface
+   * uses left hairline + purple wash. No full box border / radius / shadow.
+   */
+  --site-panel-bg: color-mix(in srgb, var(--termv-purple) 50%, transparent);
+  --site-panel-border: color-mix(
+    in srgb,
+    var(--termv-purple-light) 50%,
+    transparent
+  );
+  --site-panel-pad: 16px 25px;
+  --site-panel-radius: 0;
+  --site-panel-shadow: none;
+
+  color-scheme: dark;
+}
+
+/*
+ * HARD RULE: no rounded corners in termv — except avatar faces.
+ * Tokens already 0; this beats stock shell pills / chips.
+ */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+
+/* Avatar images stay circular */
+img[class*="avatar"],
+[class*="avatar"] img,
+.site-nav-avatar,
+.site-nav-avatar-initial,
+.site-profile-avatar img,
+.site-profile-avatar-fallback,
+.site-media--avatar,
+.site-media--avatar img,
+.play-chat__avatar,
+.play-chat__avatar-fallback {
+  border-radius: 50% !important;
+}
+
+/*
+ * Default type size = 14px (Figma / termv mock).
+ * Root on html so rem-based layout tokens resolve to 14px too.
+ * body keeps the token explicitly for components that inherit from it.
+ */
+html {
+  font-size: 14px;
+}
+
+html,
+body,
+.site-shell {
+  font-family: var(--site-font-ui);
+  font-size: var(--site-font-size);
+  line-height: var(--site-line-height);
+}
+
+/*
+ * Always show the top background art — including wiki/help/chargen
+ * compact shells and plainBg. Shell adds .is-plain on those routes
+ * and layout.css zeros --site-bg-image-top; restore it here.
+ */
+.site-shell,
+.site-shell.is-plain,
+.site-shell.is-compact,
+.site-shell.is-mode-no-hero {
+  background-image: var(--site-bg-image-top), var(--site-bg-image-bottom);
+  background-position: center top, bottom center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto, auto;
+}
+
+/*
+ * Shared horizontal frame — nav, banner, and body use the same
+ * max-width + inline pad so brand and content rails share L/R edges.
+ */
+.site-nav,
+.site-banner,
+.site-body {
+  width: 100%;
+  max-width: var(--site-max-w);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--site-inline-pad);
+  padding-right: var(--site-inline-pad);
+  box-sizing: border-box;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+
+.site-nav {
+  height: var(--site-nav-h);
+  min-height: var(--site-nav-h);
+  max-height: var(--site-nav-h);
+  /* left/right from shared frame above */
+  padding-top: 0;
+  padding-bottom: 0;
+  align-items: center;
+}
+
+.site-nav::before {
+  height: var(--site-nav-h);
+  transition: background-color 0.5s ease, background-image 0.5s ease;
+}
+
+.site-nav.is-scrolled::before {
+  background-color: var(--termv-dark);
+  background-image: var(--site-nav-tile);
+  background-position: 50% top;
+  background-repeat: repeat-x;
+  background-size: 55%;
+}
+
+.site-nav__brand {
+  font-family: var(--site-font-display);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--site-accent);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.site-nav__brand:hover {
+  color: var(--site-accent-hover);
+}
+
+.site-nav__list {
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  line-height: 1;
+  gap: 0 2.5rem;
+  flex-wrap: nowrap;
+  text-transform: uppercase;
+}
+
+.site-nav__list li {
+  margin-right: 0;
+}
+
+.site-nav__list a,
+.site-nav__list .site-nav-login-link,
+.site-nav__list .site-nav-user-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--site-text);
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+  border-bottom: 0;
+  padding-bottom: 0;
+  text-transform: uppercase;
+}
+
+.site-nav__list a:hover,
+.site-nav__list .site-nav-login-link:hover,
+.site-nav__list .site-nav-user-link:hover {
+  color: #fff;
+}
+
+/* Active = >> prefix (termv mock) */
+.site-nav__list a.is-active::before,
+.site-nav__list .site-nav-login-link.is-active::before,
+.site-nav__list .site-nav-user-link.is-active::before {
+  content: ">> ";
+  color: var(--site-accent);
+}
+
+.site-nav__list a.is-active,
+.site-nav__list .site-nav-login-link.is-active,
+.site-nav__list .site-nav-user-link.is-active {
+  color: var(--site-text);
+}
+
+/* ── Banner ──────────────────────────────────────────────────── */
+
+.site-banner {
+  margin-top: 150px;
+  /* keep shared L/R pad — do not zero padding-inline */
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.site-banner__title {
+  font-family: var(--site-font-display);
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 400;
+  color: var(--site-accent);
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.site-banner__title::before {
+  content: ">> ";
+}
+
+.site-banner.has-image .site-banner__title {
+  display: none;
+}
+
+.site-banner__connect {
+  margin-top: 1rem;
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--site-accent);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.site-banner__connect:hover {
+  color: var(--site-accent-hover);
+  text-decoration: none;
+}
+
+/*
+ * Logo / hero wordmark — fills main column width.
+ * No sep-top / sep-bottom ornaments (those are for content media only).
+ */
+.site-banner__img {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.site-banner .site-media--banner,
+.site-banner .site-media.site-media--banner {
+  max-width: min(100%, var(--site-main-max, 848px));
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.site-banner .site-media--banner::before,
+.site-banner .site-media--banner::after,
+.site-banner .site-media.site-media--banner::before,
+.site-banner .site-media.site-media--banner::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* ── Body shell ──────────────────────────────────────────────── */
+
+.site-body {
+  padding-top: 120px;
+  padding-bottom: 0;
+  margin-bottom: 50px;
+  /* padding-inline from shared .site-nav/.site-banner/.site-body rule */
+
+  /*
+   * Full-width 3-col inside the 1920 frame:
+   *   equal rails | flexible center | equal rails
+   * Left rail starts at the same gutter as the nav brand.
+   * Center track is geometrically centered; .site-main caps + centers inside it.
+   */
+  justify-content: stretch;
+  justify-items: stretch;
+  grid-template-columns:
+    minmax(var(--site-aside-min), var(--site-aside-width))
+    minmax(0, 1fr)
+    minmax(var(--site-aside-min), var(--site-aside-width));
+  column-gap: var(--site-col-gap);
+}
+
+.site-aside--start,
+.site-aside--end {
+  width: 100%;
+  max-width: var(--site-aside-max);
+}
+
+.site-aside--start {
+  justify-self: start;
+}
+
+.site-aside--end {
+  justify-self: end;
+}
+
+.site-main {
+  /* Readable column centered in the middle track */
+  max-width: var(--site-main-max);
+  width: 100%;
+  justify-self: center;
+  margin-inline: auto;
+}
+
+.site-shell.is-compact .site-body,
+.site-shell.is-mode-no-hero .site-body {
+  padding-top: calc(var(--site-nav-h) + 24px);
+  padding-bottom: 0;
+}
+
+/*
+ * Login layout is owned by layout.css (.is-mode-login).
+ * Do not re-declare flex/grid here — fighting the shell causes
+ * thrash between default UrsaMU card geometry and this skin.
+ * Skin only the gate card (panel chrome below).
+ */
+.site-shell.is-mode-login .site-gate,
+.site-shell.is-mode-login .site-gate-card,
+.site-shell.is-mode-login .site-auth-card {
+  width: 100%;
+  max-width: 24rem;
+  margin-inline: auto;
+}
+
+/* Hide home skeleton while gate injects (first paint on /login) */
+.site-shell.is-mode-login .site-section:not(:has([data-site-gate])),
+.site-shell.is-mode-login .site-main > .site-footer {
+  display: none;
+}
+
+.site-aside {
+  top: var(--site-sticky-top);
+}
+
+/* ── Search ──────────────────────────────────────────────────── */
+
+.site-search {
+  margin-top: 0;
+  margin-bottom: var(--site-search-below, 1rem);
+  gap: 16px;
+}
+
+.site-search__input {
+  height: 34px;
+  margin-bottom: 0;
+  padding-left: 16px;
+  border-radius: 0;
+  background: var(--termv-blue);
+  border-color: color-mix(in srgb, var(--termv-cream) 50%, transparent);
+  color: var(--termv-cream);
+  font-family: var(--site-font-ui);
+  font-size: 16px;
+}
+
+.site-search__input::placeholder {
+  color: var(--termv-cream);
+  font-size: 14px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.site-search__btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 0;
+  background: var(--termv-blue);
+  border-color: color-mix(in srgb, var(--termv-cream) 50%, transparent);
+  color: var(--termv-cream);
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+}
+
+/* Prefer >> glyph over search icon (termv mock) */
+.site-search__btn-icon {
+  width: auto;
+  height: auto;
+  background: none;
+  mask: none;
+  -webkit-mask: none;
+  font-size: 0;
+}
+
+.site-search__btn-icon::before {
+  content: ">>";
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  color: var(--termv-cream);
+  line-height: 1;
+}
+
+/* ── Side menus (home, wiki, play left rail — one path) ───────── */
+
+.site-menu,
+.site-shell.is-mode-play .site-menu {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.site-menu__title,
+.site-shell.is-mode-play .site-menu__title {
+  font-family: var(--site-font-display);
+  font-size: 14px !important;
+  font-weight: 400;
+  color: var(--site-accent) !important;
+  margin: 20px 0 4px !important;
+  line-height: 1.15 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em;
+}
+
+.site-menu__title::before,
+.site-shell.is-mode-play .site-menu__title::before {
+  content: ">> ";
+  color: var(--site-accent);
+}
+
+.site-menu__list,
+.site-shell.is-mode-play .site-menu__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-menu__list a,
+.site-shell.is-mode-play .site-menu__list a {
+  display: block;
+  font-family: var(--site-font-ui) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: color-mix(in srgb, var(--termv-cream) 50%, transparent) !important;
+  padding: 0.2rem 0 0.2rem 25px !important;
+  line-height: 1.35 !important;
+  text-transform: uppercase !important;
+  text-decoration: none;
+}
+
+.site-menu__list a:hover,
+.site-shell.is-mode-play .site-menu__list a:hover {
+  color: #fff !important;
+}
+
+.site-menu__list a.is-active,
+.site-menu__list .is-current > a,
+.site-shell.is-mode-play .site-menu__list a.is-active,
+.site-shell.is-mode-play .site-menu__list .is-current > a {
+  color: var(--termv-cream) !important;
+  text-decoration: underline;
+}
+
+/* First menu under search — same top spacing as home */
+.site-aside--start .site-search + [data-site-left-panels] .site-menu:first-child .site-menu__title,
+.site-shell.is-mode-play
+  .site-aside--start
+  .site-search
+  + [data-site-left-panels]
+  .site-menu:first-child
+  .site-menu__title {
+  margin-top: 0 !important;
+}
+
+/* ── Main column ─────────────────────────────────────────────── */
+
+.site-main {
+  padding-inline: 0;
+  max-width: var(--site-main-max);
+}
+
+.site-section {
+  margin: 0 0 1.5rem;
+}
+
+.site-section__title {
+  font-family: var(--site-font-display);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--site-accent);
+  /* Rule-less titles (frontmatter `rule: false`) still need breathing
+     room; when the engine injects .site-rule after us, its own margin
+     handles the gap and this collapses to 0. */
+  margin: 0 0 1.35rem;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.site-section__title:has(+ .site-rule),
+.site-section__title:has(+ .site-rule--image),
+.play-layout__title:has(+ .site-rule),
+.play-layout__section-title:has(+ .site-rule) {
+  margin-bottom: 0;
+}
+
+.site-section__title::before {
+  content: ">> ";
+}
+
+/*
+ * Title sep (ONE path) — page H1, play room name, play section titles.
+ * Markup always emits .site-rule after the heading. Paint lives here only;
+ * play/theme must not fork .play-look-sep or re-draw sep-top.
+ *
+ *   hairline tail + native sep-top cap (never stretch the SVG)
+ * Bracket window ≈ 53×15 from sep-top.svg.
+ */
+.site-section__title + .site-rule,
+.site-section__title + .site-rule--image,
+.play-layout__title + .site-rule,
+.play-layout__section-title + .site-rule {
+  --site-title-sep-bracket: 53px;
+  position: relative;
+  display: block !important;
+  align-self: stretch;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 100%;
+  max-width: none;
+  height: 15px;
+  /*
+   * Pull whole rule (hairline + sep-top) up under the title.
+   * Ornament join is at the BOTTOM of the 15px art — keep both
+   * layers bottom-aligned so the diagonal meets the hairline.
+   */
+  margin: -0.2rem 0 1.35rem;
+  border: 0;
+  border-radius: 0;
+  background: none !important;
+  background-image: none !important;
+  overflow: visible;
+}
+
+/* Hairline — meets sep-top diagonal at bottom of the 15px box */
+.site-section__title + .site-rule::before,
+.site-section__title + .site-rule--image::before,
+.play-layout__title + .site-rule::before,
+.play-layout__section-title + .site-rule::before {
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  left: 0;
+  right: var(--site-title-sep-bracket);
+  top: auto;
+  bottom: 1px;
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+/* sep-top cap — same bottom edge as hairline (moves up with the rule) */
+.site-section__title + .site-rule::after,
+.site-section__title + .site-rule--image::after,
+.play-layout__title + .site-rule::after,
+.play-layout__section-title + .site-rule::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  right: 0;
+  top: auto;
+  bottom: 0;
+  width: var(--site-title-sep-bracket);
+  height: 15px;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  background-image: var(--site-sep-top);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: auto 15px;
+  pointer-events: none;
+}
+
+/* h2/h4+ should not pick up a following markdown hr as a title rule */
+.site-section__body :is(h1, h2, h4, h5, h6) + hr,
+.site-section__body :is(h1, h2, h4, h5, h6) + .site-rule {
+  display: none !important;
+}
+
+/* Intentional horizontal rules in body / footer */
+.site-rule,
+.site-rule--image,
+.site-section__body hr {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 16px;
+  margin: 0.85rem 0;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  background-image: var(--site-rule-image);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Kill shell tick pseudos — SVG owns the ends */
+.site-rule::before,
+.site-rule--image::before,
+.site-rule::after,
+.site-rule--image::after,
+.site-section__body hr::before,
+.site-section__body hr::after {
+  content: none !important;
+  display: none !important;
+}
+
+/*
+ * Chargen chrome titles (no injected .site-rule): sep-top like page title.
+ */
+.site-shell.is-mode-chargen .cg-stage__title,
+.site-shell.is-mode-chargen .cg-group__title,
+.site-shell.is-mode-chargen .cg-gate__title,
+.site-shell.is-mode-chargen .cg-header__title {
+  position: relative;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.35rem;
+}
+
+/* Chargen titles: same stretch line + fixed bracket as page title */
+.site-shell.is-mode-chargen .cg-stage__title::after,
+.site-shell.is-mode-chargen .cg-group__title::after,
+.site-shell.is-mode-chargen .cg-gate__title::after,
+.site-shell.is-mode-chargen .cg-header__title::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 15px;
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    var(--site-sep-top);
+  background-repeat: no-repeat, no-repeat;
+  background-position:
+    left bottom 1px,
+    right bottom;
+  background-size:
+    calc(100% - 52px) 1px,
+    auto 15px;
+  pointer-events: none;
+}
+
+/* Body copy */
+.site-section__body {
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  color: var(--site-text);
+  line-height: 1.5;
+}
+
+.site-section__body p {
+  margin: 0;
+  padding: 4px 0 4px 25px;
+  color: var(--site-text);
+  line-height: 1.5;
+}
+
+/* A paragraph holding only an image is really media, not prose —
+   drop the body-copy indent so the sep frame runs full width. */
+.site-section__body p:has(> .site-media:only-child) {
+  padding: 0;
+}
+
+.site-section__body a {
+  color: var(--site-accent);
+  text-decoration: none;
+}
+
+.site-section__body a:hover {
+  color: var(--site-accent-hover);
+  text-decoration: underline;
+}
+
+.site-section__body strong {
+  font-weight: 700;
+  color: var(--site-text);
+}
+
+.site-section__body h1,
+.site-section__body h2,
+.site-section__body h3,
+.site-section__body h4,
+.site-section__body h5,
+.site-section__body h6 {
+  font-family: var(--site-font-display);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--site-accent);
+  margin: 20px 0 4px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.site-section__body h1::before,
+.site-section__body h2::before,
+.site-section__body h3::before,
+.site-section__body h4::before,
+.site-section__body h5::before,
+.site-section__body h6::before {
+  content: ">> ";
+}
+
+.site-section__body h2 {
+  margin-top: 0;
+}
+
+/* No box/text underlines on headings */
+.site-section__body :is(h1, h2, h3, h4, h5, h6) {
+  border-bottom: 0;
+  text-decoration: none;
+}
+
+/*
+ * Body h3 — no sep (Figma: only page titles get the rule).
+ * DISTRICTS / SEE ALSO style headings stay clean.
+ */
+.site-section__body h3 {
+  position: static;
+  padding-bottom: 0;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.site-section__body h3::after {
+  content: none;
+  display: none;
+}
+
+/* No auto-rule after body h3 either */
+.site-section__body h3 + hr,
+.site-section__body h3 + .site-rule {
+  display: none !important;
+}
+
+.site-section__body ul,
+.site-section__body ol {
+  margin: 0.25rem 0 0.85rem;
+  padding-left: 50px;
+  color: var(--site-text);
+  line-height: 1.5;
+}
+
+.site-section__body ul {
+  list-style-type: circle;
+}
+
+.site-section__body ol {
+  list-style-type: decimal;
+}
+
+.site-section__body li {
+  margin: 0.2rem 0;
+}
+
+.site-section__body li::marker {
+  color: var(--site-accent);
+}
+
+.site-section__body hr {
+  margin: 1rem 0 1.25rem;
+}
+
+/*
+ * Blockquotes / play-info — in-game notification rail.
+ * Transparent (no purple panel wash); 1px left accent; tight type.
+ */
+blockquote,
+.site-section__body blockquote,
+.play-info,
+blockquote.play-info,
+.play-md__bq,
+.play-md blockquote,
+.site-shell.is-mode-play blockquote,
+.site-shell.is-mode-play .play-info,
+.site-shell.is-mode-play .play-md__bq {
+  display: block;
+  margin: 0.35rem 0 0.55rem;
+  padding: 0.1rem 0 0.1rem 0.75rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 0 !important;
+  border-left: 1px solid var(--site-panel-border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--site-text);
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.45;
+  quotes: none;
+}
+
+blockquote p,
+.site-section__body blockquote p,
+.play-info p,
+.play-md__bq p,
+.play-md blockquote p {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font-style: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+blockquote p + p,
+.play-info p + p,
+.play-md__bq p + p {
+  margin-top: 0.35rem;
+}
+
+blockquote :is(h1, h2, h3, h4, h5, h6),
+.play-info :is(h1, h2, h3, h4, h5, h6),
+.play-md__bq :is(h1, h2, h3, h4, h5, h6) {
+  margin: 0 0 0.35rem;
+  padding: 0;
+  font-style: normal;
+  font-size: inherit;
+  line-height: 1.3;
+  color: var(--site-text);
+}
+
+blockquote :is(h1, h2, h3, h4, h5, h6):last-child,
+.play-info :is(h1, h2, h3, h4, h5, h6):last-child {
+  margin-bottom: 0;
+}
+
+blockquote::before,
+blockquote::after,
+.play-info::before,
+.play-info::after {
+  content: none;
+}
+
+/*
+ * Code windows — wiki/help + play/login splash (fenced ``` / <pre>).
+ * Same purple terminal panel as content body.
+ */
+.site-section__body code,
+.play-md code,
+.play-md__code,
+.site-shell.is-mode-play .play-md code,
+.site-shell.is-mode-play .play-layout--login code {
+  font-family: var(--site-font-mono);
+  font-size: 0.875em;
+  padding: 0.12em 0.45em;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--termv-purple) 50%, transparent);
+  color: var(--site-accent-hover);
+  border: 1px solid color-mix(in srgb, var(--termv-purple-light) 50%, transparent);
+}
+
+.site-section__body pre,
+.play-md pre,
+.play-md__pre,
+.site-shell.is-mode-play .play-md pre,
+.site-shell.is-mode-play .play-layout--login pre {
+  margin: 24px 0;
+  padding: 24px;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--termv-purple) 50%, transparent) !important;
+  background-color: color-mix(in srgb, var(--termv-purple) 50%, transparent) !important;
+  border: 0;
+  overflow-x: auto;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: var(--site-font-mono);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--site-text);
+}
+
+.site-section__body pre code,
+.play-md pre code,
+.play-md__pre code,
+.play-md__pre .play-md__code,
+.site-shell.is-mode-play .play-md pre code,
+.site-shell.is-mode-play .play-layout--login pre code {
+  padding: 0;
+  border: 0;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--site-text);
+  font-size: 14px;
+  font-family: inherit;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Tables — same design language as QUICK_STATS_
+   Alternating purple bars · cream labels · cyan values/headers
+   No hairlines, no radius, no shell even-stripe / hover chrome.
+   ══════════════════════════════════════════════════════════════════ */
+
+.site-section__body table,
+.site-wiki-table {
+  --site-table-row-pad-y: 0.35rem;
+  --site-table-row-pad-x: 0.65rem;
+  --site-table-row-min-h: 1.85rem;
+  --site-table-odd-bg: color-mix(in srgb, var(--termv-purple) 55%, transparent);
+
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0 0 24px;
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  border: 0;
+  border-radius: 0;
+  text-transform: uppercase;
+  overflow: visible;
+  background: transparent;
+  color: var(--termv-cream);
+}
+
+.site-wiki-table-wrap {
+  border: 0;
+  border-radius: 0;
+  overflow-x: auto;
+  margin: 0 0 24px;
+  background: transparent;
+}
+
+/* Caption = QS title tone */
+.site-section__body table caption,
+.site-wiki-table caption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--termv-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0 0 0.65rem var(--site-table-row-pad-x);
+  line-height: 1.2;
+}
+
+.site-section__body thead,
+.site-wiki-table thead {
+  background: transparent;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: var(--termv-blue);
+}
+
+/* Header cells — cyan like QS title / values */
+.site-section__body th,
+.site-wiki-table th {
+  font-weight: 400;
+  padding: 0 var(--site-table-row-pad-x) 0.5rem;
+  text-align: left;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--termv-blue);
+  border: 0 !important;
+  border-bottom: 0 !important;
+  background: transparent !important;
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+
+.site-section__body th:first-child,
+.site-wiki-table th:first-child {
+  padding-left: var(--site-table-row-pad-x);
+}
+
+.site-section__body th:last-child,
+.site-wiki-table th:last-child {
+  text-align: right;
+  padding-right: var(--site-table-row-pad-x);
+}
+
+/* Body cells — cream labels like QS rows */
+.site-section__body td,
+.site-wiki-table td {
+  padding: var(--site-table-row-pad-y) var(--site-table-row-pad-x);
+  min-height: var(--site-table-row-min-h);
+  vertical-align: middle;
+  color: var(--termv-cream);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  background: transparent;
+  line-height: 1.35;
+  box-sizing: border-box;
+}
+
+.site-section__body tbody tr,
+.site-wiki-table tbody tr {
+  min-height: var(--site-table-row-min-h);
+  border: 0 !important;
+}
+
+/*
+ * Alternating bars — match .termv-qs__row odd/even.
+ * Paint both tr + td so shell components.css cannot erase them.
+ * No top/bottom hairlines (QS has solid bars only).
+ */
+.site-section__body tbody tr:nth-child(odd),
+.site-wiki-table tbody tr:nth-child(odd),
+.site-section__body tbody tr:nth-child(odd) td,
+.site-wiki-table tbody tr:nth-child(odd) td,
+.site-section__body tbody tr:nth-child(odd) th,
+.site-wiki-table tbody tr:nth-child(odd) th,
+.site-section__body tbody tr:nth-child(odd):hover,
+.site-wiki-table tbody tr:nth-child(odd):hover,
+.site-section__body tbody tr:nth-child(odd):hover td,
+.site-wiki-table tbody tr:nth-child(odd):hover td,
+.site-section__body tbody tr:nth-child(odd):hover th,
+.site-wiki-table tbody tr:nth-child(odd):hover th {
+  background: var(--site-table-odd-bg) !important;
+  background-color: var(--site-table-odd-bg) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.site-section__body tbody tr:nth-child(even),
+.site-wiki-table tbody tr:nth-child(even),
+.site-section__body tbody tr:nth-child(even) td,
+.site-wiki-table tbody tr:nth-child(even) td,
+.site-section__body tbody tr:nth-child(even) th,
+.site-wiki-table tbody tr:nth-child(even) th,
+.site-section__body tbody tr:nth-child(even):hover,
+.site-wiki-table tbody tr:nth-child(even):hover,
+.site-section__body tbody tr:nth-child(even):hover td,
+.site-wiki-table tbody tr:nth-child(even):hover td,
+.site-section__body tbody tr:nth-child(even):hover th,
+.site-wiki-table tbody tr:nth-child(even):hover th {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* First col = label (cream); trailing cols = value (cyan), like QS */
+.site-section__body tbody td:not(:first-child),
+.site-wiki-table tbody td:not(:first-child) {
+  color: var(--termv-blue);
+}
+
+.site-section__body tbody td:last-child,
+.site-wiki-table tbody td:last-child {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Right-aligned cells (Level column, etc.) */
+.site-section__body td.right,
+.site-section__body th.right,
+.site-wiki-table td.right,
+.site-wiki-table th.right,
+.site-section__body .right,
+.site-wiki-table .right {
+  text-align: right;
+  padding-right: var(--site-table-row-pad-x);
+  color: var(--termv-blue);
+}
+
+/* Stat number + square blocks (chargen / merit style) */
+.site-section__body .stat,
+.site-wiki-table .stat {
+  display: inline-block;
+  text-align: right;
+  width: 50px;
+  color: var(--termv-blue);
+}
+
+.site-section__body .dim,
+.site-wiki-table .dim {
+  opacity: 0.3;
+}
+
+.site-section__body .stat-blocks,
+.site-wiki-table .stat-blocks {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  font-size: 0;
+}
+
+.site-section__body .stat-blocks span,
+.site-wiki-table .stat-blocks span {
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: center;
+  margin-right: 4px;
+}
+
+.site-section__body .stat-blocks span:last-child,
+.site-wiki-table .stat-blocks span:last-child {
+  margin-right: 0;
+}
+
+.site-section__body .stat-blocks span img,
+.site-wiki-table .stat-blocks span img {
+  vertical-align: middle;
+  width: 4px;
+  height: 4px;
+  display: block;
+}
+
+/* Inline code inside table cells — inherit row color (label/value) */
+.site-section__body td code,
+.site-wiki-table td code {
+  font-size: 14px;
+  font-family: var(--site-font-mono);
+  text-transform: none;
+  letter-spacing: 0.04em;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+/*
+ * ════════════════════════════════════════════════════════════════
+ * CONTENT MEDIA + SEP ORNAMENTS — Figma Termv-2
+ *
+ * Images: full main width, object-fit cover (beat shell defaults).
+ * Seps: hairline TAIL + native 53×15 bracket CAP.
+ *   top open end 25px from right · bottom open end 25px from left
+ *   Do NOT stretch sep-*.svg — tails vanish and caps land mid-frame.
+ * Banner / logo (.site-media--banner): seps OFF, contain glyphs.
+ * ════════════════════════════════════════════════════════════════
+ */
+
+/*
+ * Content media hosts — wiki + play look share this box.
+ * Play markup: <figure class="play-layout__media image-wrap">.
+ */
+.site-media:not(.site-media--banner),
+.image-wrap:not(.site-media--banner),
+.play-layout__media.image-wrap,
+.site-section__body .site-media:not(.site-media--banner),
+.site-section__body .image-wrap:not(.site-media--banner),
+.site-section__body figure,
+.site-section__body p:has(> .site-media:only-child),
+.site-section__body p:has(> img:only-child),
+.textarea-wrap,
+.site-section__body .textarea-wrap {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 24px;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 0;
+  /* seps use negative offsets — never clip */
+  overflow: visible;
+}
+
+/*
+ * Beat shell `.site-section__body img { max-height:300px;
+ * object-fit:contain }`. Content stage art fills the column.
+ */
+.site-media:not(.site-media--banner) > img,
+.image-wrap:not(.site-media--banner) > img,
+.play-layout__media.image-wrap > img,
+.site-section__body .site-media:not(.site-media--banner) img,
+.site-section__body .image-wrap:not(.site-media--banner) img,
+.site-section__body figure img,
+.site-section__body p:has(> .site-media:only-child) > .site-media > img,
+.site-section__body p:has(> img:only-child) > img,
+.site-section__body img:not([class*="avatar"]):not(.site-banner__img) {
+  position: relative;
+  z-index: 0;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto;
+  max-height: none !important;
+  margin: 0 !important;
+  object-fit: cover !important;
+  object-position: center;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+/* Wide stage / wiki cover / sheet skyline / play look — Figma band */
+.site-section__body
+  .site-media:not(.site-media--banner):not(.termv-char__portrait)
+  img,
+.site-section__body
+  .image-wrap:not(.termv-char__portrait):not(.site-media--banner)
+  img,
+.site-section__body figure:not(.termv-char__portrait) img,
+.termv-char__banner img,
+.termv-char__banner.site-media img,
+.play-layout__media.image-wrap > img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: clamp(11rem, 20.5vw, 21.75rem) !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+/*
+ * Media seps — hairline TAIL + native bracket CAP (Figma / title-sep).
+ *
+ *   top:    [======== hairline tail ========][sep-top ▶]
+ *           left:0 · right:25px open · bracket on RIGHT
+ *   bottom: [◀ sep-bottom][======== hairline tail ========]
+ *           left:25px open · right:0 · bracket on LEFT
+ *
+ * sep-*.svg is ONLY the 53×15 end cap — never background-size 100%.
+ * Stretching squashes the ornament into the middle and drops the tail.
+ */
+.site-media:not(.site-media--banner)::before,
+.image-wrap:not(.site-media--banner)::before,
+.site-section__body figure::before,
+.site-section__body p:has(> .site-media:only-child)::before,
+.site-section__body p:has(> img:only-child)::before {
+  content: "" !important;
+  position: absolute;
+  left: 0;
+  right: var(--site-sep-inset-end, 25px);
+  top: var(--site-sep-top-offset, -7px);
+  height: var(--site-sep-h, 15px);
+  pointer-events: none;
+  z-index: 5;
+  background-color: transparent !important;
+  background-image:
+    linear-gradient(
+      var(--site-sep-line-color, rgba(255, 255, 255, 0.5)),
+      var(--site-sep-line-color, rgba(255, 255, 255, 0.5))
+    ),
+    var(--site-sep-top) !important;
+  background-repeat: no-repeat !important;
+  background-size:
+    calc(100% - var(--site-sep-bracket-w, 53px)) 1px,
+    auto var(--site-sep-h, 15px) !important;
+  background-position:
+    left bottom,
+    right center !important;
+}
+
+.site-media:not(.site-media--banner)::after,
+.image-wrap:not(.site-media--banner)::after,
+.site-section__body figure::after,
+.site-section__body p:has(> .site-media:only-child)::after,
+.site-section__body p:has(> img:only-child)::after,
+.textarea-wrap::after,
+.site-section__body .textarea-wrap::after {
+  content: "" !important;
+  position: absolute;
+  left: var(--site-sep-inset-end, 25px);
+  right: 0;
+  bottom: var(--site-sep-bottom-offset, -7px);
+  /* room so tail can sit above the cap without clipping */
+  height: calc(
+    var(--site-sep-h, 15px) + var(--site-sep-bottom-tail-offset, 0px)
+  );
+  pointer-events: none;
+  z-index: 5;
+  background-color: transparent !important;
+  background-image:
+    linear-gradient(
+      var(--site-sep-line-color, rgba(255, 255, 255, 0.5)),
+      var(--site-sep-line-color, rgba(255, 255, 255, 0.5))
+    ),
+    var(--site-sep-bottom) !important;
+  background-repeat: no-repeat !important;
+  background-size:
+    calc(100% - var(--site-sep-bracket-w, 53px)) 1px,
+    auto var(--site-sep-h, 15px) !important;
+  background-position:
+    right var(--site-sep-bottom-tail-offset, 0px),
+    left bottom !important;
+}
+
+/* Textarea: bottom sep only (termv mock .textarea-wrap) */
+.textarea-wrap {
+  padding: 0 0 8px;
+  margin-bottom: 24px;
+}
+
+.textarea-wrap::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Logo / hero wordmark — main width, NEVER seps, never crop glyphs */
+.site-media--banner,
+.site-banner .site-media--banner,
+.site-banner .site-media.site-media--banner {
+  display: block;
+  width: 100%;
+  max-width: min(100%, var(--site-main-max, 848px));
+  margin: 0 auto;
+  padding: 0 !important;
+  line-height: 0;
+}
+
+.site-media--banner::before,
+.site-media--banner::after,
+.site-banner .site-media--banner::before,
+.site-banner .site-media--banner::after,
+.site-banner .site-media.site-media--banner::before,
+.site-banner .site-media.site-media--banner::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+.site-media--banner > img,
+.site-banner .site-media--banner img,
+.site-banner .site-media > .site-banner__img,
+.site-banner .site-media > img,
+.site-banner__img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  margin: 0 !important;
+}
+
+/* Footer / section rules keep full hr.svg (both end brackets) */
+.site-main .site-footer .site-rule,
+.site-footer .site-rule {
+  margin: 0 auto 8px;
+  max-width: 100%;
+}
+
+/*
+ * ════════════════════════════════════════════════════════════════
+ * DEFAULT PANEL — termv .panel (left 1px + purple wash)
+ * Every raised surface inherits this. Login is not special-cased
+ * for chrome; only form/type polish sits below.
+ * ════════════════════════════════════════════════════════════════
+ */
+
+.panel,
+.site-section__body .panel,
+.site-gate-card,
+.site-auth-card,
+.site-profile-card,
+.site-user-card,
+.site-nav-account-menu {
+  border: 0 !important;
+  border-top: 0 !important;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+  border-left: 1px solid var(--site-panel-border) !important;
+  border-radius: var(--site-panel-radius) !important;
+  box-shadow: var(--site-panel-shadow) !important;
+  background: var(--site-panel-bg) !important;
+  background-color: var(--site-panel-bg) !important;
+  padding: var(--site-panel-pad) !important;
+  box-sizing: border-box;
+}
+
+/*
+ * Account dropdown — same faded purple panel chrome as .panel
+ * (left purple-light hairline, no full box border / radius / shadow).
+ */
+.site-nav-account-menu {
+  min-width: 12rem;
+  padding: 0.5rem 0 !important; /* tighter than body panels */
+  overflow: hidden;
+}
+
+.site-nav-account-item {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.55rem 1rem;
+  min-height: 2.5rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--site-text);
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  text-align: left;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.site-nav-account-item:hover,
+.site-nav-account-item:focus-visible {
+  background: color-mix(in srgb, var(--termv-purple-light) 35%, transparent);
+  color: var(--termv-cream);
+  outline: none;
+}
+
+.site-nav-account-signout {
+  color: var(--site-text-muted);
+}
+
+.site-nav-account-signout:hover,
+.site-nav-account-signout:focus-visible {
+  color: var(--termv-cream);
+}
+
+.panel,
+.site-section__body .panel {
+  margin-bottom: 16px;
+}
+
+.panel h3,
+.site-section__body .panel h3 {
+  position: static;
+  font-family: var(--site-font-display);
+  color: var(--termv-blue);
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+  padding-bottom: 0;
+}
+
+.panel h3::before,
+.site-section__body .panel h3::before {
+  content: ">> ";
+}
+
+.panel h3::after,
+.site-section__body .panel h3::after {
+  content: none;
+  display: none;
+}
+
+/* Ensure page-title rule wins over generic .site-rule margin */
+.site-section > .site-section__title + .site-rule,
+.site-section > .site-section__title + .site-rule--image {
+  margin-top: -0.2rem;
+  margin-bottom: 1.35rem;
+  width: 100%;
+  min-width: 100%;
+}
+
+/* ── Login / auth / profile — type + controls on panel chrome ── */
+
+.site-gate {
+  max-width: 24rem; /* match layout.css login gate */
+}
+
+.site-gate-card,
+.site-auth-card,
+.site-profile-card {
+  width: 100%;
+  max-width: 24rem;
+  margin: 0 auto;
+}
+
+.site-gate-card > header {
+  margin: 0 0 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.site-gate-kicker {
+  margin: 0 0 8px;
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--termv-blue);
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.site-gate-kicker::before {
+  content: ">> ";
+}
+
+.site-gate-card > header h1 {
+  margin: 0 0 8px;
+  font-family: var(--site-font-display);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.2;
+  color: var(--termv-blue);
+  text-transform: uppercase;
+}
+
+.site-gate-card > header h1::before {
+  content: ">> ";
+}
+
+.site-gate-lede {
+  margin: 0;
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--termv-cream);
+  line-height: 1.5;
+  text-transform: none;
+}
+
+.site-gate-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.site-gate-btn,
+.site-gate-btn--primary,
+.site-auth-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: auto;
+  margin: 0;
+  padding: 8px 16px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 0;
+  background: var(--termv-purple);
+  color: var(--termv-cream);
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background-color 0.2s ease;
+}
+
+.site-gate-btn:hover,
+.site-gate-btn--primary:hover,
+.site-auth-submit:hover {
+  background: var(--termv-purple-light);
+  border-color: transparent;
+  color: var(--termv-cream);
+}
+
+.site-gate-btn:not(.site-gate-btn--primary) {
+  background: transparent;
+  color: var(--termv-purple-light);
+  border: 1px solid var(--termv-purple-light);
+}
+
+.site-gate-btn:not(.site-gate-btn--primary):hover {
+  background: color-mix(in srgb, var(--termv-purple-light) 15%, transparent);
+  color: var(--termv-cream);
+  border-color: var(--termv-purple-light);
+}
+
+.site-auth-tabs {
+  display: flex;
+  gap: 0;
+  margin: 0 0 16px;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--termv-purple-light) 50%, transparent);
+  padding-bottom: 0;
+}
+
+.site-auth-tab {
+  flex: 1 1 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  color: color-mix(in srgb, var(--termv-cream) 50%, transparent);
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  padding: 8px 8px;
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+
+.site-auth-tab:hover {
+  color: var(--termv-cream);
+  background: transparent;
+}
+
+.site-auth-tab.is-active {
+  color: var(--termv-blue);
+  border-bottom-color: var(--termv-blue);
+  font-weight: 400;
+  background: transparent;
+}
+
+.site-auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+}
+
+.site-auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.site-auth-label {
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--termv-blue);
+  text-transform: uppercase;
+}
+
+.site-auth-label::before {
+  content: ">> ";
+}
+
+.site-auth-input,
+.site-gate .site-auth-input {
+  width: 100%;
+  min-height: auto;
+  margin: 0;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid
+    color-mix(in srgb, var(--termv-purple-light) 50%, transparent);
+  border-radius: 0;
+  background: color-mix(in srgb, var(--termv-purple) 50%, transparent);
+  color: var(--termv-cream);
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  line-height: 1.3;
+  outline: none;
+  box-shadow: none;
+}
+
+.site-auth-input:focus,
+.site-gate .site-auth-input:focus {
+  border-color: var(--termv-blue);
+  box-shadow: none;
+  outline: none;
+}
+
+.site-auth-input::placeholder {
+  color: color-mix(in srgb, var(--termv-cream) 45%, transparent);
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.site-auth-submit {
+  margin-top: 4px;
+}
+
+.site-auth-submit:disabled {
+  color: var(--termv-purple-light);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.site-auth-error {
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  color: var(--site-error);
+  padding: 0;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+/* Form controls (prose + play) */
+.site-section__body input[type="text"],
+.site-section__body input[type="email"],
+.site-section__body input[type="password"],
+.site-section__body input[type="search"],
+.site-section__body textarea,
+.play-prompt__input {
+  border-radius: 0;
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  background: color-mix(in srgb, var(--termv-purple) 50%, transparent);
+  border: 1px solid
+    color-mix(in srgb, var(--termv-purple-light) 50%, transparent);
+  color: var(--site-text);
+}
+
+.site-section__body button,
+.btn {
+  border-radius: 0;
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  text-transform: uppercase;
+  background: var(--termv-purple);
+  color: var(--termv-cream);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.site-section__body button:hover,
+.btn:hover:not(:disabled) {
+  background: var(--termv-purple-light);
+}
+
+.btn.is-secondary {
+  background: var(--termv-purple-light);
+}
+
+.btn.is-tertiary {
+  background: transparent;
+  color: var(--termv-purple-light);
+  border: 1px solid var(--termv-purple-light);
+}
+
+.btn.is-disabled,
+.btn:disabled {
+  color: var(--termv-purple-light);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border: 1px solid color-mix(in srgb, var(--termv-blue) 60%, transparent);
+  border-radius: 0;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--termv-blue);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.chip:hover {
+  background-color: color-mix(in srgb, var(--termv-blue) 15%, transparent);
+}
+
+.chip.is-active {
+  background-color: var(--termv-blue);
+  color: var(--termv-dark);
+}
+
+/* Footer */
+.site-main .site-footer,
+.site-footer {
+  margin-top: 50px;
+  padding: 0;
+  font-size: 14px;
+  color: var(--site-text);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.site-main .site-footer a,
+.site-footer a {
+  color: var(--site-text);
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.site-main .site-footer a:hover,
+.site-footer a:hover {
+  color: var(--site-accent);
+  text-decoration: underline;
+}
+
+/*
+ * ════════════════════════════════════════════════════════════════
+ * PLAY CLIENT — Figma Termv-2 Client (1685:1009)
+ * Transparent column · 14px SCP · left rails 1px · look chrome
+ * ════════════════════════════════════════════════════════════════
+ */
+
+/* Surfaces — transparent so city bg shows through */
+.site-shell.is-mode-play .site-main,
+.site-shell.is-mode-play .play-root,
+.site-shell.is-mode-play .play-output,
+.site-shell.is-mode-play .play-msg,
+.site-shell.is-mode-play .play-info,
+.site-shell.is-mode-play .play-chat,
+.site-shell.is-mode-play .play-chat__main,
+.site-shell.is-mode-play .play-layout,
+.site-shell.is-mode-play .play-layout--look,
+.site-shell.is-mode-play .play-prompt {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/*
+ * Left-rail accents only — stock play.css uses 2–3px.
+ * Force width to 1px; do not outline unrelated controls.
+ */
+.site-shell.is-mode-play .play-info,
+.site-shell.is-mode-play blockquote.play-info,
+.site-shell.is-mode-play .play-chat--channel .play-chat__main,
+.site-shell.is-mode-play
+  .play-layout--channels-history
+  .play-layout__panel,
+.site-shell.is-mode-play
+  .play-layout--jobs-detail
+  .play-layout__panel,
+.site-shell.is-mode-play .play-form,
+.site-shell.is-mode-play .play-entity--usable {
+  border-left-width: 1px !important;
+}
+
+/*
+ * Left rail = same chrome as the rest of the site.
+ * Stock play.css: `.site-shell.is-mode-play .site-search { display:none
+ * !important }` — beat it with equal/higher specificity + later source.
+ */
+html body .site-shell.is-mode-play .site-aside--start .site-search,
+html body .site-shell.is-mode-play form.site-search#search {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  margin-bottom: var(--site-search-below, 1rem) !important;
+}
+
+/* 14px type — client column only (not left/right rails) */
+.site-shell.is-mode-play .play-root,
+.site-shell.is-mode-play .play-output,
+.site-shell.is-mode-play .play-output__empty,
+.site-shell.is-mode-play .play-msg,
+.site-shell.is-mode-play .play-info,
+.site-shell.is-mode-play .play-pre,
+.site-shell.is-mode-play .play-chat,
+.site-shell.is-mode-play .play-chat__name,
+.site-shell.is-mode-play .play-chat__time,
+.site-shell.is-mode-play .play-chat__text,
+.site-shell.is-mode-play .play-chat__tag,
+.site-shell.is-mode-play .play-chat__chip,
+.site-shell.is-mode-play .play-chat__avatar-fallback,
+.site-shell.is-mode-play .play-cmd-echo,
+.site-shell.is-mode-play .play-cmd-echo__text,
+.site-shell.is-mode-play .play-cmd-echo__gt,
+.site-shell.is-mode-play .play-prompt__input,
+.site-shell.is-mode-play .play-prompt__send,
+.site-shell.is-mode-play .play-layout,
+.site-shell.is-mode-play .play-layout__title,
+.site-shell.is-mode-play .play-layout__section-title,
+.site-shell.is-mode-play .play-layout__text,
+.site-shell.is-mode-play .play-md,
+.site-shell.is-mode-play .play-md__p,
+.site-shell.is-mode-play .play-md__h,
+.site-shell.is-mode-play .play-action,
+.site-shell.is-mode-play .play-action__label,
+.site-shell.is-mode-play .play-action__badge,
+.site-shell.is-mode-play .play-action__dbref,
+.site-shell.is-mode-play .play-entity,
+.site-shell.is-mode-play .play-entity__name,
+.site-shell.is-mode-play .play-entity__role,
+.site-shell.is-mode-play .play-entity__meta,
+.site-shell.is-mode-play .play-entity__sub,
+.site-shell.is-mode-play .play-entity__dbref,
+.site-shell.is-mode-play .play-stat-row__label,
+.site-shell.is-mode-play .play-stat-row__num,
+.site-shell.is-mode-play .play-stat-cols__title,
+.site-shell.is-mode-play .play-track-row__label,
+.site-shell.is-mode-play .play-track-row__meta,
+.site-shell.is-mode-play .mush-text,
+.site-shell.is-mode-play .mush-text * {
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  font-family: var(--site-font-ui) !important;
+}
+
+/* ── Look layout (Figma: media → >> title → desc → lists → exits) ─
+ * Media seps + title seps: shared .image-wrap / .site-rule only.
+ * This block is deltas (stock play.css fights) — no second sep paint.
+ */
+
+/* Stack rhythm matches site sections (not Figma-tight client) */
+.site-shell.is-mode-play .play-layout,
+.site-shell.is-mode-play .play-layout--look {
+  margin: 0 0 1.5rem;
+  padding: 0;
+  border: 0 !important;
+  max-width: 100%;
+}
+
+/*
+ * Beat stock play.css `.play-layout__media { overflow:hidden; height:… }`.
+ * Box + seps + cover band already come from .image-wrap rules above.
+ */
+.site-shell.is-mode-play .play-layout__media.image-wrap,
+.site-shell.is-mode-play .play-layout__media {
+  height: auto !important;
+  overflow: visible !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.site-shell.is-mode-play .play-layout__header {
+  margin: 0 0 0.75rem;
+  padding: 0 !important;
+  border: 0 !important;
+  border-bottom: 0 !important;
+}
+
+/* Room / section titles — type only; underline is shared .site-rule */
+.site-shell.is-mode-play .play-layout__title,
+.site-shell.is-mode-play .play-layout__section-title {
+  position: relative;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  color: var(--termv-blue) !important;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-decoration: none !important;
+}
+
+.site-shell.is-mode-play .play-layout__title {
+  text-transform: uppercase;
+}
+
+.site-shell.is-mode-play .play-layout__section-title {
+  text-transform: none;
+}
+
+.site-shell.is-mode-play .play-layout__title::before,
+.site-shell.is-mode-play .play-layout__section-title::before {
+  content: ">> ";
+  color: var(--termv-blue);
+}
+
+.site-shell.is-mode-play .play-layout__title::after,
+.site-shell.is-mode-play .play-layout__section-title::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Play title sep: same paint as page H1 */
+.site-shell.is-mode-play .play-layout__title + .site-rule,
+.site-shell.is-mode-play .play-layout__section-title + .site-rule {
+  margin-top: calc(-0.2rem - 4px);
+  margin-bottom: 1rem;
+}
+
+.site-shell.is-mode-play .play-layout__text {
+  margin: 0.25rem 0 1rem;
+  color: var(--termv-cream);
+  white-space: pre-wrap;
+  border: 0 !important;
+}
+
+.site-shell.is-mode-play .play-layout__section {
+  margin: 1.25rem 0 0.75rem;
+  padding: 0;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+/* Characters / contents rows — name | role | idle | short-desc */
+.site-shell.is-mode-play .play-entity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0 0 0.75rem;
+  padding: 0 !important;
+  border: 0 !important;
+  border-top: 0 !important;
+}
+
+.site-shell.is-mode-play .play-entity {
+  display: grid !important;
+  /*
+   * Figma Client: name · role · idle · short-desc.
+   * Stock play.css hardcodes 300px name — override fully.
+   */
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(4.5rem, 6.5rem)
+    3rem
+    minmax(0, 1.85fr) !important;
+  column-gap: 0.85rem;
+  align-items: baseline;
+  width: 100%;
+  margin: 0;
+  /* Vertical rhythm between player / contents rows only */
+  padding: 0 !important;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  background: transparent !important;
+  color: var(--termv-cream);
+  text-align: left;
+  cursor: pointer;
+}
+
+.site-shell.is-mode-play .play-entity:hover,
+.site-shell.is-mode-play .play-entity:focus-visible {
+  color: #fff;
+  background: transparent !important;
+}
+
+/* Kill stock 300px name col — let the grid track size it */
+.site-shell.is-mode-play .play-entity__name-col,
+.site-shell.is-mode-play .play-entity__role-col,
+.site-shell.is-mode-play .play-entity__meta,
+.site-shell.is-mode-play .play-entity__sub {
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+}
+
+.site-shell.is-mode-play .play-entity__name-col {
+  overflow: hidden;
+}
+
+.site-shell.is-mode-play .play-entity__name {
+  color: inherit;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.site-shell.is-mode-play .play-entity__role {
+  color: #23ff00; /* Figma <DEV/> green */
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.site-shell.is-mode-play .play-entity__meta {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.site-shell.is-mode-play .play-entity__meta,
+.site-shell.is-mode-play .play-entity__sub,
+.site-shell.is-mode-play .play-entity__dbref {
+  color: color-mix(in srgb, var(--termv-cream) 70%, transparent);
+}
+
+.site-shell.is-mode-play .play-entity__sub {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Exits — 3-up chips; gaps follow site column rhythm */
+.site-shell.is-mode-play .play-actions,
+.site-shell.is-mode-play .play-actions--cols-2,
+.site-shell.is-mode-play .play-actions--cols-3,
+.site-shell.is-mode-play .play-actions--cols-4 {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem var(--site-col-gap);
+  margin: 0.5rem 0 1rem;
+  width: 100%;
+}
+
+.site-shell.is-mode-play .play-actions--cols-1 {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.site-shell.is-mode-play .play-actions--cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.site-shell.is-mode-play .play-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.35rem 0.65rem 0.35rem 0.35rem;
+  box-sizing: border-box;
+  border: 1px solid
+    color-mix(in srgb, var(--termv-cream) 35%, transparent) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--termv-cream);
+  text-transform: none;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.site-shell.is-mode-play .play-action:hover,
+.site-shell.is-mode-play .play-action:focus-visible {
+  border-color: var(--termv-blue) !important;
+  color: #fff;
+}
+
+.site-shell.is-mode-play .play-action__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 1.65rem;
+  padding: 0 0.35rem;
+  margin: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: var(--termv-blue) !important;
+  color: var(--termv-dark) !important;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.site-shell.is-mode-play .play-action__label {
+  color: inherit;
+  text-transform: none;
+}
+
+.site-shell.is-mode-play .play-action__dbref {
+  color: color-mix(in srgb, var(--termv-cream) 55%, transparent);
+  font-weight: 400;
+}
+
+/* ── Chat bubble (Figma: circle av · time · >> name · quote) ───── */
+
+.site-shell.is-mode-play .play-chat {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  column-gap: 0.75rem;
+  align-items: start;
+  margin: 0.85rem 0;
+  padding: 0;
+  border: 0 !important;
+}
+
+.site-shell.is-mode-play .play-chat__avatar,
+.site-shell.is-mode-play .play-chat__avatar-fallback {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50% !important;
+  border: 0 !important;
+  background: var(--termv-blue) !important;
+  color: var(--termv-dark) !important;
+  font-weight: 600;
+  object-fit: cover;
+}
+
+.site-shell.is-mode-play .play-chat__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.5rem;
+  margin: 0 0 0.2rem;
+}
+
+/* Figma: time on its own line, then >> name then <DEV/> tag */
+.site-shell.is-mode-play .play-chat__time {
+  order: 0;
+  flex: 1 0 100%;
+  width: 100%;
+  color: color-mix(in srgb, var(--termv-cream) 55%, transparent);
+}
+
+.site-shell.is-mode-play .play-chat__name {
+  order: 1;
+  color: var(--termv-blue) !important;
+  font-weight: 400;
+  text-transform: none;
+}
+
+.site-shell.is-mode-play .play-chat__name::before {
+  content: ">> ";
+  color: var(--termv-blue);
+}
+
+.site-shell.is-mode-play .play-chat__tag,
+.site-shell.is-mode-play .play-chat__chip {
+  order: 2;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: color-mix(
+    in srgb,
+    var(--termv-purple-light) 45%,
+    transparent
+  ) !important;
+  color: var(--termv-purple-light);
+  padding: 0.05rem 0.35rem;
+  text-transform: none;
+}
+
+.site-shell.is-mode-play .play-chat__text {
+  color: var(--termv-cream);
+}
+
+/*
+ * Play shell geometry = rest of site (not Figma client frame).
+ * DESKTOP ONLY (≥1291). Below 1290 the stack media query owns the
+ * grid — an always-on 3-col here used aside-width:100% and crushed
+ * the main track to 0px (play window disappeared).
+ */
+@media (min-width: 1291px) {
+  .site-shell.is-mode-play .site-body {
+    justify-content: stretch !important;
+    justify-items: stretch !important;
+    grid-template-columns:
+      minmax(var(--site-aside-min), var(--site-aside-width))
+      minmax(0, 1fr)
+      minmax(var(--site-aside-min), var(--site-aside-width)) !important;
+    column-gap: var(--site-col-gap) !important;
+    padding-left: var(--site-inline-pad) !important;
+    padding-right: var(--site-inline-pad) !important;
+    padding-bottom: 0 !important;
+    max-width: var(--site-max-w) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box;
+  }
+
+  .site-shell.is-mode-play .site-aside--start {
+    justify-self: start !important;
+    width: 100% !important;
+    max-width: var(--site-aside-max) !important;
+  }
+
+  .site-shell.is-mode-play .site-aside--end {
+    justify-self: end !important;
+    width: 100% !important;
+    max-width: var(--site-aside-max) !important;
+  }
+
+  .site-shell.is-mode-play .site-main {
+    max-width: var(--site-main-max) !important;
+    width: 100% !important;
+    justify-self: center !important;
+    margin-inline: auto !important;
+    padding-inline: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+.site-shell.is-mode-play .site-body {
+  padding-bottom: 0 !important;
+}
+
+.site-shell.is-mode-play .site-main,
+.site-shell.is-mode-play .play-root {
+  padding-bottom: 0 !important;
+}
+
+.site-shell.is-mode-play .play-root {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.site-shell.is-mode-play .play-chat {
+  margin: 1rem 0;
+}
+
+/* Prompt — site chrome + SEND; pinned 48px from page bottom */
+.site-shell.is-mode-play .play-prompt {
+  gap: 0.75rem; /* search-row band */
+  border: 0 !important;
+  padding-top: 0.5rem;
+  padding-bottom: 0 !important;
+  margin-bottom: 48px !important;
+  align-items: flex-end;
+}
+
+/*
+ * Single-line placeholder/caret vertically centered in the 55px control
+ * (matches SEND). padY = (height − line-height) / 2 with 14px × 1.5.
+ * When JS grows the textarea, top/bottom pad stay; height expands.
+ */
+.site-shell.is-mode-play .play-prompt__input {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: color-mix(
+    in srgb,
+    var(--termv-purple) 70%,
+    #0a0818
+  ) !important;
+  color: var(--termv-cream);
+  box-sizing: border-box;
+  height: 55px;
+  min-height: 55px;
+  max-height: 500px;
+  /* 14px × 1.5 lh = 21px → (55 − 21) / 2 = 17 */
+  padding: 17px 1rem;
+  line-height: 1.5 !important;
+  font-size: 14px !important;
+}
+
+.site-shell.is-mode-play .play-prompt__input::placeholder {
+  color: color-mix(in srgb, var(--termv-cream) 45%, transparent);
+  text-transform: none;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.site-shell.is-mode-play .play-prompt__send {
+  background: color-mix(
+    in srgb,
+    var(--termv-purple) 85%,
+    #0a0818
+  ) !important;
+  color: var(--termv-cream) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  text-transform: uppercase;
+  font-family: var(--site-font-ui);
+  min-width: 7.5rem;
+  height: 55px;
+  min-height: 55px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  line-height: 1;
+  font-size: 14px !important;
+}
+
+.site-shell.is-mode-play .play-prompt__send:hover {
+  background: var(--termv-purple-light) !important;
+}
+
+.site-shell.is-mode-play .play-prompt-rule {
+  display: none;
+}
+
+/*
+ * ════════════════════════════════════════════════════════════════
+ * QUICK_STATS_ — Figma Termv-2 sheet panel (layout demo)
+ * Alternating purple rows · cyan dots · mono labels
+ * ════════════════════════════════════════════════════════════════
+ */
+
+.termv-qs,
+ul.termv-qs,
+.site-section__body ul.termv-qs,
+.site-section__body .termv-qs {
+  /* Shared tracks so every row lines up (each row is its own grid) */
+  --termv-qs-label-w: 13ch; /* BACKGROUND: / EQUILIBRIUM: */
+  /* 6 glyphs + tracking room for 02/10, 6/12, 300 */
+  --termv-qs-value-w: 6.5ch;
+  --termv-qs-gap: 0.75rem;
+  /* Pull dots 10px toward the value (wide rows like RESILIENCE 12) */
+  --termv-qs-dots-nudge: 10px;
+
+  width: 100%;
+  max-width: 22rem;
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  color: var(--termv-cream);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  /* qs root may be a <ul> — kill body list indent */
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+.termv-qs__title {
+  margin: 0 0 0.65rem;
+  padding: 0;
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--termv-blue);
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.termv-qs__title::before {
+  content: ">> ";
+  color: var(--termv-blue);
+}
+
+.termv-qs__list,
+.site-section__body .termv-qs__list,
+.site-section__body ul.termv-qs__list {
+  list-style: none !important;
+  margin: 0 !important;
+  /* Align row bars under title text after ">> " (same 25px as menus/body) */
+  padding: 0 0 0 25px !important;
+  border: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.termv-qs__row {
+  display: grid;
+  /*
+   * Fixed tracks on every row:
+   *   label (fixed) | dots (flex, shared start) | value (6ch numbers)
+   */
+  grid-template-columns:
+    var(--termv-qs-label-w)
+    minmax(0, 1fr)
+    var(--termv-qs-value-w);
+  align-items: center;
+  column-gap: var(--termv-qs-gap);
+  row-gap: 0.25rem;
+  min-height: 1.85rem;
+  margin: 0;
+  padding: 0.35rem 0.65rem;
+  box-sizing: border-box;
+  background: transparent;
+  border: 0;
+}
+
+/* Alternating wash — Figma odd/even bars */
+.termv-qs__row:nth-child(odd) {
+  background: color-mix(in srgb, var(--termv-purple) 55%, transparent);
+}
+
+.termv-qs__row:nth-child(even) {
+  background: transparent;
+}
+
+.termv-qs__label {
+  width: 100%;
+  min-width: 0;
+  color: var(--termv-cream);
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+/*
+ * Dots sit in a shared middle track (fixed label + 6.5ch value).
+ * Right-aligned toward the number: row-reverse + pack to end so
+ * filled squares (first N in DOM) always sit on the value side.
+ * Every row’s dots share the same right edge (against the number).
+ */
+.termv-qs__dots {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start; /* after reverse = pack to the right */
+  justify-self: stretch;
+  /*
+   * Width = full middle track + 10px into the value-side gap, so
+   * RESILIENCE’s 12 squares aren’t clipped while staying right-aligned.
+   */
+  width: calc(100% + var(--termv-qs-dots-nudge));
+  min-width: 0;
+  margin-right: calc(-1 * var(--termv-qs-dots-nudge));
+  gap: 3px;
+  min-height: 4px;
+  overflow: visible;
+}
+
+.termv-qs__dots--wide {
+  max-width: none; /* full middle track — right edge stays locked */
+}
+
+.termv-qs__dots i {
+  display: block;
+  width: 4px;
+  height: 4px;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--termv-blue) 28%, transparent);
+  opacity: 0.45;
+}
+
+.termv-qs__dots i.is-on {
+  background: var(--termv-blue);
+  opacity: 1;
+}
+
+/* Numbers: fixed 6ch slot, right-aligned tabular */
+.termv-qs__value {
+  justify-self: stretch;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  text-align: right;
+  color: var(--termv-blue);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  letter-spacing: 0.02em;
+}
+
+/*
+ * Text values (BACKGROUND / EDGE) — longer than 6ch.
+ * Span dots+value tracks so the number column width stays 6ch for
+ * every numeric row (squares stay locked).
+ */
+.termv-qs__row:has(.termv-qs__value--text) .termv-qs__dots {
+  display: none;
+}
+
+.termv-qs__value--text {
+  grid-column: 2 / -1;
+  letter-spacing: 0.06em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Right-rail placement */
+.site-aside--end .termv-qs,
+[data-site-right-panels] .termv-qs {
+  max-width: none;
+  margin: 0 0 1.5rem;
+}
+
+/*
+ * Character Sheet — INFO (Figma 1713:1955)
+ * Main: banner → portrait+mini-stats | callout+fingers
+ * Right rail: full QUICK_STATS_
+ * Left rail: RUNNER PROFILE (preview leftMenu)
+ */
+.termv-char {
+  width: 100%;
+}
+
+.termv-char__banner,
+.termv-char__banner.site-media,
+.termv-char__banner.image-wrap {
+  margin: 0 0 1.25rem !important;
+  max-width: 100%;
+  width: 100%;
+  padding: 0 !important;
+}
+
+.termv-char__banner img,
+.termv-char__banner.site-media img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: clamp(11rem, 20.5vw, 21.75rem) !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  display: block;
+}
+
+.termv-char__body {
+  display: grid;
+  grid-template-columns: 11.25rem minmax(0, 1fr); /* ~180px portrait col */
+  gap: 1rem 1.25rem;
+  align-items: start;
+}
+
+.termv-char__identity {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 11.25rem; /* lock column = portrait width (Figma 180) */
+  max-width: 100%;
+  min-width: 0;
+}
+
+/*
+ * Portrait (Figma 1713:1955) — same stretched seps as content media.
+ * Frame only; rails from .site-media::before/::after (mock stretch).
+ */
+.termv-char__portrait,
+.termv-char__portrait.site-media,
+.termv-char__portrait.image-wrap {
+  margin: 0 0 0.5rem !important;
+  width: 100%;
+  max-width: none;
+  padding: 0 !important;
+  position: relative;
+  isolation: isolate;
+  display: block;
+  box-sizing: border-box;
+  line-height: 0;
+}
+
+.termv-char__portrait img,
+.termv-char__portrait.site-media img,
+.site-section__body .termv-char__portrait img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  aspect-ratio: 180 / 240;
+  object-fit: cover !important;
+  object-position: center top !important;
+  display: block;
+  margin: 0 !important;
+  position: relative;
+  z-index: 0;
+}
+
+/* Mini attribute strip — full width of portrait above */
+.termv-qs--mini,
+ul.termv-qs--mini,
+.site-section__body ul.termv-qs--mini {
+  width: 100% !important;
+  max-width: none !important;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  box-sizing: border-box;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.termv-qs--mini .termv-qs__list {
+  width: 100% !important;
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.termv-qs--mini .termv-qs__title {
+  display: none;
+}
+
+.termv-qs--mini .termv-qs__row {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box;
+  /* label | dots only — no 6.5ch value track under the portrait */
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 0.5rem;
+  row-gap: 0;
+  min-height: 1.7rem;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 0.25rem 0.45rem;
+}
+
+.termv-qs--mini .termv-qs__label {
+  width: auto;
+  min-width: 0;
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*
+ * Kill full-rail dots nudge (width 100%+10px / -10px margin) —
+ * that shoved squares past the 180px portrait column.
+ */
+.termv-qs--mini .termv-qs__dots,
+.termv-qs--mini .termv-qs__dots--wide {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  justify-self: end;
+  align-items: center;
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0;
+  margin: 0 !important;
+  transform: none !important;
+  gap: 3px;
+  overflow: visible;
+}
+
+.termv-qs--mini .termv-qs__value {
+  display: none !important;
+}
+
+.termv-char__dossier {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+/* Lead callout — panel chrome + left border (Figma Group 628) */
+.termv-char__callout {
+  margin: 0 !important;
+  padding: 1rem 1.15rem !important;
+}
+
+.termv-char__callout p {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 14px;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--termv-cream);
+}
+
+.termv-char__finger {
+  margin: 0;
+}
+
+.termv-char__finger-title {
+  margin: 0 0 0.4rem !important;
+  padding: 0 !important;
+  font-family: var(--site-font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--termv-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+}
+
+.termv-char__finger-title::before {
+  content: ">> ";
+  color: var(--termv-blue);
+}
+
+.termv-char__finger-title::after {
+  content: none !important;
+  display: none !important;
+}
+
+.termv-char__finger p {
+  margin: 0 !important;
+  padding: 0 0 0 1.5rem !important;
+  font-size: 14px;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--termv-cream);
+}
+
+.termv-char__finger ul {
+  margin: 0.15rem 0 0 !important;
+  padding: 0 0 0 1.75rem !important;
+  list-style: disc;
+}
+
+.termv-char__finger li {
+  margin: 0.2rem 0;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--termv-cream);
+}
+
+.termv-char__finger li::marker {
+  color: var(--termv-blue);
+}
+
+@media (max-width: 900px) {
+  .termv-char__body {
+    grid-template-columns: 1fr;
+  }
+
+  .termv-char__identity {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 720px) {
+  /* Keep fixed 3-col tracks so squares still share a start edge */
+  .termv-qs {
+    --termv-qs-label-w: 12ch;
+    --termv-qs-value-w: 6.5ch;
+  }
+
+  .termv-qs__row {
+    grid-template-columns:
+      var(--termv-qs-label-w)
+      minmax(0, 1fr)
+      var(--termv-qs-value-w);
+  }
+
+  .termv-qs--mini .termv-qs__row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+/* ── Responsive ────────────────────────────────────────────────
+ * Theme re-declares the 3-col body grid above layout.css, so every
+ * mobile stack/overflow rule MUST live here or phones keep three
+ * crushed columns (main ~0–168px) and horizontal page scroll.
+ * ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 1280px) {
+  :root {
+    --site-aside-width: 15.5rem;
+    --site-aside-min: 12.5rem;
+    --site-aside-max: 16.5rem;
+    --site-col-gap: 1.25rem;
+    --site-gutter: 1.5rem;
+    --site-inline-pad: var(--site-gutter);
+  }
+}
+
+@media (max-width: 1100px) {
+  :root {
+    --site-aside-width: 13rem;
+    --site-aside-min: 10.5rem;
+    --site-aside-max: 14rem;
+    --site-col-gap: 0.85rem;
+    --site-gutter: 1.15rem;
+    --site-inline-pad: var(--site-gutter);
+  }
+
+  .site-body {
+    grid-template-columns:
+      minmax(var(--site-aside-min), var(--site-aside-width))
+      minmax(0, 1fr)
+      minmax(var(--site-aside-min), var(--site-aside-width));
+    justify-content: stretch;
+  }
+
+  .site-aside--start,
+  .site-aside--end,
+  .site-main {
+    max-width: none;
+  }
+}
+
+/*
+ * Mobile / stack breakpoint (~1290).
+ * Stock layout.css stacks at 1024 and only shows the hamburger there —
+ * theme must re-assert stack + drawer from 1290 so mid widths match.
+ */
+@media (max-width: 1290px) {
+  :root {
+    --site-inline-pad: 1rem;
+    --site-gutter: 1rem;
+    --site-nav-h: 3.25rem;
+    --site-banner-offset: 5.5rem;
+    --site-main-max: 100%;
+    --site-aside-min: 0;
+    --site-aside-width: 100%;
+    --site-aside-max: none;
+    --site-col-gap: 0;
+    --site-panel-pad: 14px 16px;
+  }
+
+  /*
+   * overflow-x:hidden is ignored when overflow-y is visible (CSS
+   * computes the other axis to auto). Pin both axes so wide tables
+   * cannot pan the whole page — only their own scrollport.
+   */
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .site-shell {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+
+  .site-nav,
+  .site-banner,
+  .site-body {
+    max-width: 100%;
+    padding-left: var(--site-inline-pad);
+    padding-right: var(--site-inline-pad);
+  }
+
+  /*
+   * MUST re-assert 1-col — theme base grid would otherwise win over
+   * layout.css @media and leave three ~168px columns on phones.
+   */
+  .site-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) !important;
+    justify-content: stretch;
+    justify-items: stretch;
+    column-gap: 0;
+    row-gap: 1.25rem;
+    padding-top: calc(var(--site-nav-h, 3.25rem) + 1rem);
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
+    overflow-x: clip;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .site-shell.is-compact .site-body,
+  .site-shell.is-mode-no-hero .site-body {
+    padding-top: calc(var(--site-nav-h, 3.25rem) + 0.85rem);
+  }
+
+  .site-aside,
+  .site-aside--start,
+  .site-aside--end,
+  .site-main {
+    grid-column: 1 !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0;
+    justify-self: stretch;
+    position: static;
+    padding-inline: 0;
+    box-sizing: border-box;
+  }
+
+  /* Content first on small screens; rails follow */
+  .site-main {
+    order: 1;
+    margin-inline: 0;
+    padding: 0;
+  }
+
+  .site-aside--start {
+    order: 2;
+  }
+
+  .site-aside--end {
+    order: 3;
+  }
+
+  /*
+   * Play ≤1290: stock play.css loads AFTER the theme skin and keeps
+   * `.site-aside { display:flex !important }` until 1024. Equal
+   * specificity loses — prefix html body so theme wins. Hidden rails
+   * also stop stealing the sole 1fr grid row (main height → 0).
+   */
+  html body .site-shell.is-mode-play .site-aside,
+  html body .site-shell.is-mode-play .site-aside--start,
+  html body .site-shell.is-mode-play .site-aside--end {
+    display: none !important;
+  }
+
+  html body .site-shell.is-mode-play .site-body {
+    flex: 1 1 0 !important;
+    min-height: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: minmax(0, 1fr) !important;
+    column-gap: 0 !important;
+    row-gap: 0 !important;
+    justify-content: stretch !important;
+    padding-top: calc(var(--site-nav-h, 3.25rem) + 0.5rem) !important;
+    padding-bottom: 0 !important;
+  }
+
+  html body .site-shell.is-mode-play .site-main {
+    display: flex !important;
+    flex-direction: column !important;
+    order: 0 !important;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    align-self: stretch !important;
+    overflow: hidden !important;
+  }
+
+  html body .site-shell.is-mode-play .play-root {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 0 !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    width: 100% !important;
+    max-width: none !important;
+    overflow: hidden !important;
+  }
+
+  html body .site-shell.is-mode-play .play-output {
+    flex: 1 1 0 !important;
+    min-height: 0 !important;
+  }
+
+  html body .site-shell.is-mode-play .play-prompt {
+    flex-wrap: wrap;
+    align-items: stretch;
+    flex-shrink: 0;
+  }
+
+  html body .site-shell.is-mode-play .play-prompt__input {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+  }
+
+  html body .site-shell.is-mode-play .play-prompt__send {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    min-height: 3rem;
+  }
+
+  /* Exits — stack full-width (theme desktop is 3-up !important) */
+  html body .site-shell.is-mode-play .play-actions,
+  html body .site-shell.is-mode-play .play-actions--cols-1,
+  html body .site-shell.is-mode-play .play-actions--cols-2,
+  html body .site-shell.is-mode-play .play-actions--cols-3,
+  html body .site-shell.is-mode-play .play-actions--cols-4 {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0.55rem;
+  }
+
+  html body .site-shell.is-mode-play .play-action {
+    width: 100%;
+    min-height: 2.75rem;
+    justify-content: flex-start;
+  }
+
+  /*
+   * Entity rows (mobile): name flex-grows; flag + idle fixed so times
+   * line up. short-desc takes a smaller share and ellipsizes.
+   * Keep empty role-col in the grid (stock hides :empty and shifts idle).
+   */
+  html body .site-shell.is-mode-play .play-entity {
+    /* name grows; short-desc capped so monikers keep room */
+    grid-template-columns:
+      minmax(0, 1fr)
+      4.5rem
+      3rem
+      minmax(0, 4.5rem) !important;
+    column-gap: 0.35rem;
+    align-items: center;
+  }
+
+  html body .site-shell.is-mode-play .play-entity__name-col {
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    overflow: hidden;
+  }
+
+  html body .site-shell.is-mode-play .play-entity__name {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  html body .site-shell.is-mode-play .play-entity__role-col {
+    width: auto !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden;
+  }
+
+  /* Placeholder when no flag — keeps idle column aligned */
+  html body .site-shell.is-mode-play .play-entity__role-col:empty {
+    display: block !important;
+    visibility: hidden;
+    min-height: 1em;
+  }
+
+  html body .site-shell.is-mode-play .play-entity__role {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  html body .site-shell.is-mode-play .play-entity__meta {
+    width: 3rem !important;
+    max-width: 3rem !important;
+    min-width: 3rem !important;
+    justify-self: end;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* short-desc: one line + ellipsis (no wrap) */
+  html body .site-shell.is-mode-play .play-entity__sub {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    overflow-wrap: normal !important;
+  }
+
+  .site-section,
+  .site-section__body,
+  .site-main > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .site-banner {
+    margin-top: 5.5rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .site-banner__title {
+    font-size: clamp(0.95rem, 4vw, 1.25rem);
+  }
+
+  /*
+   * Images — full column width + cover the frame.
+   * Logo wordmark stays contain (must not crop glyphs).
+   * Content media / sheet art / portrait use object-fit: cover.
+   * Sep rails still use desktop mock stretch rules above.
+   */
+  .site-media:not(.site-media--banner),
+  .site-section__body .site-media:not(.site-media--banner),
+  .site-section__body .image-wrap:not(.site-media--banner),
+  .site-section__body figure,
+  .termv-char__banner,
+  .termv-char__portrait {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .site-media:not(.site-media--banner) img,
+  .site-section__body .site-media:not(.site-media--banner) img,
+  .site-section__body .image-wrap:not(.site-media--banner) img,
+  .site-section__body figure img,
+  .site-section__body img:not([class*="avatar"]):not(.site-banner__img),
+  .termv-char__banner img,
+  .termv-char__portrait img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    margin: 0 !important;
+    object-fit: cover !important;
+    object-position: center;
+  }
+
+  /* Wide content / sheet skyline — cover band on phones */
+  .site-section__body
+    .site-media:not(.site-media--banner):not(.termv-char__portrait)
+    img,
+  .site-section__body
+    .image-wrap:not(.termv-char__portrait):not(.site-media--banner)
+    img,
+  .site-section__body figure:not(.termv-char__portrait) img,
+  .termv-char__banner img {
+    height: clamp(9rem, 48vw, 14rem) !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+
+  /* Portrait — full column width, cover inside 3:4 frame */
+  .termv-char__identity {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .termv-char__portrait,
+  .site-section__body .termv-char__portrait {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .termv-char__portrait img,
+  .site-section__body .termv-char__portrait img,
+  .site-section__body .termv-char__portrait.site-media img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 3 / 4 !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+  }
+
+  /* Hero logo wordmark — full width, never crop letters */
+  .site-banner .site-media--banner,
+  .site-banner .site-media.site-media--banner {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
+    padding: 0 !important;
+  }
+
+  .site-banner .site-media--banner img,
+  .site-banner__img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center;
+  }
+
+  .site-nav {
+    height: var(--site-nav-h);
+    max-height: var(--site-nav-h);
+    min-height: var(--site-nav-h);
+    padding-top: 0;
+    padding-bottom: 0;
+    gap: 0.5rem;
+  }
+
+  /*
+   * Mobile nav always uses scrolled chrome: dark purple + nav.png.
+   * ONE paint layer only — do not also tile .site-nav__list (doubles).
+   * Stock `.is-open::before { background: var(--site-bg) }` wipes the
+   * image; re-assert. When open, stretch ::before full viewport so the
+   * drawer can stay transparent over the same continuous field.
+   */
+  .site-nav::before,
+  .site-nav.is-scrolled::before,
+  .site-nav.is-open::before,
+  .site-nav.is-open.is-scrolled::before {
+    background-color: var(--termv-dark) !important;
+    background-image: var(--site-nav-tile) !important;
+    background-position: 50% top !important;
+    background-repeat: repeat-x !important;
+    /* desktop scrolled uses 55%; mobile tile at 175% */
+    background-size: 175% !important;
+  }
+
+  .site-nav.is-open::before,
+  .site-nav.is-open.is-scrolled::before {
+    height: 100vh !important;
+    height: 100dvh !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+  }
+
+  /* Drawer: solid/transparent only — tile lives on ::before */
+  .site-nav__list,
+  .site-nav.is-open .site-nav__list {
+    background-color: var(--termv-dark) !important;
+    background-image: none !important;
+    border-bottom-color: color-mix(
+      in srgb,
+      var(--termv-purple-light) 35%,
+      transparent
+    ) !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55) !important;
+  }
+
+  .site-nav.is-open .site-nav__list {
+    /* sit over the full-height ::before tile without a second copy */
+    background-color: transparent !important;
+  }
+
+  .site-nav__brand {
+    font-size: 14px;
+    max-width: calc(100% - 3.5rem);
+  }
+
+  /* layout.css only unhides toggle / drawer ≤1024 — force from 1290 */
+  .site-nav__toggle {
+    display: inline-flex !important;
+    flex: 0 0 auto;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    border-color: color-mix(in srgb, var(--termv-cream) 50%, transparent);
+    color: var(--site-text);
+    border-radius: 0;
+  }
+
+  .site-nav__toggle:hover,
+  .site-nav__toggle:focus-visible {
+    border-color: var(--site-accent);
+  }
+
+  /* Slide-down drawer (mirror layout.css mobile nav, from 1290) */
+  .site-nav__list {
+    position: fixed !important;
+    top: var(--site-nav-h) !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 101;
+    display: none !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    max-height: calc(100dvh - var(--site-nav-h, 3.25rem)) !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0 !important;
+    padding: 0.75rem var(--site-inline-pad)
+      max(1.5rem, env(safe-area-inset-bottom, 0px)) !important;
+    gap: 0 !important;
+    font-size: 14px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .site-nav.is-open .site-nav__list {
+    display: flex !important;
+  }
+
+  .site-nav__list > li {
+    margin: 0;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--termv-purple-light) 35%, transparent);
+  }
+
+  .site-nav__list > li:last-child {
+    border-bottom: none;
+  }
+
+  .site-nav__list a,
+  .site-nav__list .site-nav-login-link,
+  .site-nav__list .site-nav-user-link {
+    display: block;
+    width: 100%;
+    min-height: 2.75rem;
+    padding-block: 0.85rem;
+    border-bottom: none;
+    text-align: left;
+    box-sizing: border-box;
+  }
+
+  /*
+   * Account block in drawer — identity row left-aligned with nav links
+   * (avatar + moniker), then full-width actions. Stock layout.css only
+   * does this ≤1024; theme stack is 1290 so re-assert here.
+   */
+  .site-nav__list > li.site-nav-user-item,
+  .site-nav__list > li:has(.site-nav-account) {
+    text-align: left;
+  }
+
+  .site-nav-account {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: none !important;
+    gap: 0.35rem;
+    padding: 0.25rem 0 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .site-nav-account-toggle,
+  .site-nav__list .site-nav-user-link.site-nav-account-toggle,
+  button.site-nav-account-toggle {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0.65rem !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 2.75rem;
+    margin: 0 !important;
+    padding: 0.65rem 0 !important;
+    border: 0 !important;
+    border-bottom: none !important;
+    background: transparent !important;
+    color: var(--site-text) !important;
+    font: inherit;
+    font-size: 14px !important;
+    text-align: left !important;
+    text-transform: uppercase;
+    pointer-events: none;
+    cursor: default;
+    box-sizing: border-box;
+  }
+
+  .site-nav-account .site-nav-avatar,
+  .site-nav-account .site-nav-avatar-initial {
+    flex: 0 0 auto !important;
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+    margin: 0 !important;
+    font-size: 0.9rem;
+  }
+
+  .site-nav-account .site-nav-username {
+    flex: 1 1 auto !important;
+    display: block !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left !important;
+    font-size: 14px !important;
+    line-height: 1.2;
+  }
+
+  .site-nav-account-menu,
+  .site-nav-account-menu[hidden] {
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    position: static !important;
+    right: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin: 0.15rem 0 0;
+    gap: 0;
+    border: 0 !important;
+    border-left: 1px solid var(--site-panel-border) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: var(--site-panel-bg) !important;
+    background-color: var(--site-panel-bg) !important;
+    padding: 0.35rem 0 !important;
+    box-sizing: border-box;
+  }
+
+  .site-nav-account-item {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100% !important;
+    min-height: 2.75rem;
+    padding: 0.75rem 1rem;
+    font-size: 14px;
+    text-align: left !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-sizing: border-box;
+  }
+
+  .site-nav-account-item:hover,
+  .site-nav-account-item:focus-visible {
+    background: color-mix(
+      in srgb,
+      var(--termv-purple-light) 35%,
+      transparent
+    ) !important;
+  }
+
+  /* Search fills the stacked rail */
+  .site-search {
+    width: 100%;
+    max-width: none;
+    gap: 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .site-search__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+    font-size: 16px; /* avoid iOS zoom on focus */
+  }
+
+  .site-search__btn {
+    flex: 0 0 auto;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  /*
+   * Tables — full column width on mobile.
+   * Do NOT set display:block on <table> (rows stay content-width).
+   * Wrap is the scrollport when content is wider than the column.
+   */
+  .site-wiki-table-wrap,
+  .site-section__body .site-wiki-table-wrap {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0;
+    margin: 0 0 1.25rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    box-sizing: border-box;
+    contain: inline-size;
+  }
+
+  .site-wiki-table-wrap > table,
+  .site-wiki-table-wrap .site-wiki-table,
+  .site-section__body table,
+  .site-section__body > table,
+  .site-wiki-table {
+    display: table !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1.25rem;
+    box-sizing: border-box;
+    table-layout: auto;
+  }
+
+  .site-wiki-table-wrap > table,
+  .site-wiki-table-wrap .site-wiki-table {
+    margin-bottom: 0;
+  }
+
+  .site-section__body table thead,
+  .site-section__body table tbody,
+  .site-section__body table tr,
+  .site-wiki-table thead,
+  .site-wiki-table tbody,
+  .site-wiki-table tr {
+    width: 100%;
+  }
+
+  .site-section__body p {
+    padding-left: 12px;
+  }
+
+  .site-section__body ul,
+  .site-section__body ol {
+    padding-left: 1.75rem;
+  }
+
+  .site-menu__list a {
+    display: block;
+    min-height: 2.5rem;
+    padding: 0.45rem 0 0.45rem 12px;
+    box-sizing: border-box;
+  }
+
+  /* QUICK_STATS — full rail width, keep >> indent */
+  .termv-qs,
+  ul.termv-qs,
+  .site-aside--end .termv-qs,
+  [data-site-right-panels] .termv-qs {
+    max-width: none;
+    width: 100%;
+  }
+
+  .termv-qs__list,
+  .site-section__body .termv-qs__list,
+  .site-section__body ul.termv-qs__list {
+    padding-left: 12px !important;
+  }
+
+  .termv-qs__row {
+    min-height: 2.5rem;
+    padding: 0.45rem 0.65rem;
+  }
+
+  .termv-qs__label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Character sheet — single column, images full width */
+  .termv-char__body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .termv-char__identity {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .termv-char__banner {
+    margin-bottom: 1rem !important;
+    width: 100%;
+  }
+
+  /* Title rule still full main width (page + play) */
+  .site-section__title + .site-rule,
+  .site-section__title + .site-rule--image,
+  .play-layout__title + .site-rule,
+  .play-layout__section-title + .site-rule {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Login gate breathes on narrow screens */
+  .site-shell.is-mode-login .site-gate,
+  .site-shell.is-mode-login .site-gate-card,
+  .site-shell.is-mode-login .site-auth-card,
+  .site-gate,
+  .site-gate-card {
+    width: 100%;
+    max-width: min(24rem, 100%);
+    box-sizing: border-box;
+  }
+
+  .site-gate input,
+  .site-gate button,
+  .site-auth-card input,
+  .site-auth-card button {
+    font-size: 16px;
+    min-height: 2.75rem;
+  }
+
+  /* Pre/code blocks scroll instead of blowing the layout */
+  .site-section__body pre {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 1rem;
+  }
+
+  .panel,
+  .site-section__body .panel {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* Phones — tighter type, safe areas, stacked qs rows */
+@media (max-width: 600px) {
+  :root {
+    --site-inline-pad: max(0.75rem, env(safe-area-inset-left, 0px));
+    --site-gutter: 0.75rem;
+    --site-panel-pad: 12px 14px;
+  }
+
+  .site-nav,
+  .site-banner,
+  .site-body {
+    padding-left: max(0.75rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.75rem, env(safe-area-inset-right, 0px));
+  }
+
+  .site-body {
+    row-gap: 1rem;
+    padding-bottom: max(2rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .site-section__title {
+    font-size: 14px;
+    word-break: break-word;
+  }
+
+  .termv-qs__title,
+  .site-menu__title {
+    font-size: 14px;
+  }
+
+  .termv-qs {
+    --termv-qs-label-w: 11ch;
+    --termv-qs-value-w: 6.5ch;
+    --termv-qs-gap: 0.5rem;
+  }
+
+  .termv-qs__row {
+    grid-template-columns:
+      var(--termv-qs-label-w)
+      minmax(0, 1fr)
+      var(--termv-qs-value-w);
+    column-gap: var(--termv-qs-gap);
+  }
+
+  .termv-qs--mini .termv-qs__row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .termv-char__identity {
+    width: 100%;
+  }
+
+  .termv-char__banner img,
+  .site-section__body .site-media:not(.site-media--banner):not(.termv-char__portrait) img,
+  .site-section__body .image-wrap:not(.termv-char__portrait) img,
+  .site-section__body figure:not(.termv-char__portrait) img {
+    height: clamp(8rem, 52vw, 12rem);
+  }
+
+  .termv-char__portrait img,
+  .site-section__body .termv-char__portrait img {
+    aspect-ratio: 3 / 4 !important;
+    height: auto !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+  }
+
+  .site-section__body table th,
+  .site-section__body table td,
+  .site-wiki-table th,
+  .site-wiki-table td {
+    padding: 0.45rem 0.65rem;
+    font-size: 14px;
+  }
+
+  .site-footer {
+    font-size: 0.75rem;
+    padding-inline: 0;
+  }
+}

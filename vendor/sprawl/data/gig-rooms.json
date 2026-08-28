@@ -1,0 +1,290 @@
+[
+  {
+    "slug": "loading-bay",
+    "roll": "11",
+    "name": "Loading bay",
+    "blurb": "Roll-up doors, pallet jacks, one cam.",
+    "book": "house",
+    "description": "Diesel and wet cardboard hang in the air. Roll-up doors rattle on warped tracks under one red-winking cam."
+  },
+  {
+    "slug": "stairwell",
+    "roll": "12",
+    "name": "Concrete stairwell",
+    "blurb": "Echoes. Graffiti. Blood on 3.",
+    "book": "house",
+    "description": "A cold concrete stairwell where every step doubles back as echo. Graffiti spirals the landings; old blood stains the third."
+  },
+  {
+    "slug": "server-closet",
+    "roll": "13",
+    "name": "Server closet",
+    "blurb": "Hot air, blinking LEDs, tight fit.",
+    "book": "house",
+    "description": "Dry electric heat and screaming fans pack the racks wall-to-wall. Barely room to turn — touch the wrong port and the floor will know."
+  },
+  {
+    "slug": "open-office",
+    "roll": "14",
+    "name": "Open office floor",
+    "blurb": "Cubicles, cold coffee, motion lights.",
+    "book": "house",
+    "description": "After-hours cubicles and sleep-glowing monitors. Motion lights snap on in stages, advertising every step across thin cover and long sightlines."
+  },
+  {
+    "slug": "secure-lab",
+    "roll": "15",
+    "name": "Secure lab",
+    "blurb": "Glass, gloves, something still humming.",
+    "book": "house",
+    "description": "Filtered air, glass partitions, and glove boxes under peeling biohazard stickers. Something inside still hums; the cleanup was never finished."
+  },
+  {
+    "slug": "parking-sub",
+    "roll": "16",
+    "name": "Sublevel parking",
+    "blurb": "Oil stains and a running van.",
+    "book": "house",
+    "description": "Oil rainbows and numbered pillars carve the sublevel into kill-funnels. A van idles dark at the far end of the ramp."
+  },
+  {
+    "slug": "rooftop-hvac",
+    "roll": "21",
+    "name": "Rooftop HVAC maze",
+    "blurb": "Fans, ducts, long drops.",
+    "book": "house",
+    "description": "Galvanized ducts and spinning fans on a gravel roof. Wind shoves hard; one loose grate opens on a long drop."
+  },
+  {
+    "slug": "clinic-bay",
+    "roll": "22",
+    "name": "Clinic bay",
+    "blurb": "Gurneys, lazarus wrappers, red bags.",
+    "book": "house",
+    "description": "Too-white lights over gurneys and red bio bags. Antiseptic fights something sweeter under a half-mopped stain."
+  },
+  {
+    "slug": "bar-back",
+    "roll": "23",
+    "name": "Bar back room",
+    "blurb": "Crates, a cage, sticky floor.",
+    "book": "house",
+    "description": "Sticky floor, liquor crates, and a cage for the good bottles. Music thumps through the wall — this is where deals finish off the floor."
+  },
+  {
+    "slug": "tunnel-spur",
+    "roll": "24",
+    "name": "Service tunnel spur",
+    "blurb": "Pipes drip. Something moved.",
+    "book": "house",
+    "description": "Sweating pipes and copper-tasting air curve out of sight both ways. Something moved further down, or dripped."
+  },
+  {
+    "slug": "drone-cage",
+    "roll": "25",
+    "name": "Drone cage",
+    "blurb": "Charging racks and a half-open gate.",
+    "book": "house",
+    "description": "Chain-link charging racks full of docked birds and ozone stink. One gate hangs open on a bent hinge."
+  },
+  {
+    "slug": "exec-suite",
+    "roll": "26",
+    "name": "Exec suite",
+    "blurb": "Glass desk, panic button under it.",
+    "book": "house",
+    "description": "Glass desk, skyline view, and a panic button worn smooth under the lip. The chair is still warm."
+  },
+  {
+    "slug": "archive",
+    "roll": "31",
+    "name": "Paper archive",
+    "blurb": "Dust, shelves, one locked cage.",
+    "book": "house",
+    "description": "Dust-thick shelves climb to a locked cage of real files. Fire — or a shredder crew — would end this room in minutes."
+  },
+  {
+    "slug": "kitchen",
+    "roll": "32",
+    "name": "Industrial kitchen",
+    "blurb": "Knives, freezers, bad smells.",
+    "book": "house",
+    "description": "Stainless steel, hanging knives, and freezers breathing frost. Something in the walk-in is not food."
+  },
+  {
+    "slug": "chapel",
+    "roll": "33",
+    "name": "Street chapel",
+    "blurb": "Candles and a hidden hatch.",
+    "book": "house",
+    "description": "Plastic chairs, a flickering neon cross, and candle nubs. Behind the altar cloth, a hatch cut into the floorboards."
+  },
+  {
+    "slug": "gym",
+    "roll": "34",
+    "name": "Corp gym",
+    "blurb": "Mirrors, free weights, blood on mat.",
+    "book": "house",
+    "description": "Mirrors, free weights, and a heavy bag still swaying. Blood is smeared half-wiped on the mat under watching cams."
+  },
+  {
+    "slug": "clean-room",
+    "roll": "35",
+    "name": "Clean room airlock",
+    "blurb": "Suits hanging. One still warm.",
+    "book": "house",
+    "description": "White suits hang in an airlock with a red light that will not go green. One collar is still warm."
+  },
+  {
+    "slug": "rail-platform",
+    "roll": "36",
+    "name": "Abandoned rail platform",
+    "blurb": "Rats and a dead schedule board.",
+    "book": "house",
+    "description": "Wet tile, rats, and a schedule board frozen on a year that never came. Trains do not stop here; other things do."
+  },
+  {
+    "slug": "mezzanine",
+    "roll": "41",
+    "name": "Mezzanine overlook",
+    "blurb": "Good sightlines. Bad cover.",
+    "book": "house",
+    "description": "A rail and a drop — sightlines cut the whole hall. Cover is a potted plant and optimism."
+  },
+  {
+    "slug": "vault-ante",
+    "roll": "42",
+    "name": "Vault antechamber",
+    "blurb": "Two doors, one still sealed.",
+    "book": "house",
+    "description": "Two heavy doors; one still sealed with a time-lock glow. Cold air and old money-smell breathe from the open side."
+  },
+  {
+    "slug": "hydroponics",
+    "roll": "43",
+    "name": "Hydroponics bay",
+    "blurb": "Green light, wet deck, hidden path.",
+    "book": "house",
+    "description": "Green grow-light, wet grated deck, and nutrient fog. A hatch hides behind the leaves at the far wall."
+  },
+  {
+    "slug": "broadcast",
+    "roll": "44",
+    "name": "Broadcast booth",
+    "blurb": "Dead mics, live uplink light.",
+    "book": "house",
+    "description": "Dead mics, foam walls, and one uplink light still live green. If that light is on, someone is listening."
+  },
+  {
+    "slug": "armoury",
+    "roll": "45",
+    "name": "Private armoury",
+    "blurb": "Empty racks and a logbook.",
+    "book": "house",
+    "description": "Empty racks, oil-smell, and a logbook open to today with no names. The cage door is unlocked — worse than locked."
+  },
+  {
+    "slug": "nursery",
+    "roll": "46",
+    "name": "Vat nursery",
+    "blurb": "Tanks bubbling off-cycle.",
+    "book": "house",
+    "description": "Tanks bubble off-cycle under amber warning glyphs. One vat is empty and clean; the one beside it is not."
+  },
+  {
+    "slug": "chapel-net",
+    "roll": "51",
+    "name": "Net chapel",
+    "blurb": "CRT altars, cable spaghetti.",
+    "book": "house",
+    "description": "CRT altars and cable spaghetti in a shrine of e-waste. Screens show static that almost looks like faces."
+  },
+  {
+    "slug": "freezer",
+    "roll": "52",
+    "name": "Walk-in freezer",
+    "blurb": "Fog, hooks, a body bag.",
+    "book": "house",
+    "description": "Knee-high fog, meat hooks, and metal that burns bare skin. Check the glowing door paddle twice before it latches."
+  },
+  {
+    "slug": "atrium",
+    "roll": "53",
+    "name": "Glass atrium",
+    "blurb": "Too much light, too little cover.",
+    "book": "house",
+    "description": "Glass, plants, and a fountain — too much light, too little cover. Every footstep clicks for the cameras."
+  },
+  {
+    "slug": "mech-bay",
+    "roll": "54",
+    "name": "Mech bay",
+    "blurb": "Oil pits and clamp arms.",
+    "book": "house",
+    "description": "Oil pits and clamp arms frozen mid-reach under a hanging frame. If anything powers up, you will not outrun the clamp."
+  },
+  {
+    "slug": "safehouse",
+    "roll": "55",
+    "name": "Burned safehouse",
+    "blurb": "Mattresses, maps, spent brass.",
+    "book": "house",
+    "description": "Foil-taped windows, wall maps, and spent brass in a dustpan. Three locks on the door, one kick-mark, and old smoke in the air."
+  },
+  {
+    "slug": "elevator-core",
+    "roll": "56",
+    "name": "Elevator core",
+    "blurb": "Cables, catwalks, long fall.",
+    "book": "house",
+    "description": "Cables thick as wrists and a drop that eats light. A service car hangs stuck between floors with the doors cracked."
+  },
+  {
+    "slug": "market-stall",
+    "roll": "61",
+    "name": "Shuttered market stall",
+    "blurb": "Tarps, scales, a false back.",
+    "book": "house",
+    "description": "Tarps, hanging scales, and a shutter down but not locked. A false back slides open to the next stall or the alley."
+  },
+  {
+    "slug": "dock-edge",
+    "roll": "62",
+    "name": "Dock edge",
+    "blurb": "Water slap, one working flood.",
+    "book": "house",
+    "description": "Water slap on pilings under one working flood. Crates wear three different corp stamps; the rest of the lights are shot out."
+  },
+  {
+    "slug": "panopticon",
+    "roll": "63",
+    "name": "Panopticon desk",
+    "blurb": "Screens of empty halls.",
+    "book": "house",
+    "description": "A horseshoe of screens loops empty halls and a lobby fountain. Most feeds are live; a shotgun is zip-tied under the desk."
+  },
+  {
+    "slug": "ritual-room",
+    "roll": "64",
+    "name": "Chrome ritual room",
+    "blurb": "Candles, code, bad theology.",
+    "book": "house",
+    "description": "Candles on server cases and code printouts as scripture. Bad theology, real knives on the altar."
+  },
+  {
+    "slug": "crawlspace",
+    "roll": "65",
+    "name": "Crawlspace",
+    "blurb": "Elbows and knees and wire.",
+    "book": "house",
+    "description": "Elbows, knees, wire, and insulation that itches through cloth. Sound carries — move slow or not at all."
+  },
+  {
+    "slug": "exit-shaft",
+    "roll": "66",
+    "name": "Exit shaft",
+    "blurb": "Ladder up. Alarm already blinking.",
+    "book": "house",
+    "description": "Cold ladder rungs and a circle of alley light above. The alarm panel at the bottom already blinks amber."
+  }
+]

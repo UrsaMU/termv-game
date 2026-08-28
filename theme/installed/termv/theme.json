@@ -1,0 +1,10 @@
+{
+  "id": "termv",
+  "label": "Terminal Velocity",
+  "version": "1.0.0",
+  "description": "Cyber terminal FE theme — deep indigo, cyan accent, Source Code Pro mono UI. Ported from termv-template.",
+  "css": "site.css",
+  "bannerImage": "imgs/header.png",
+  "title": ">> Terminal Velocity",
+  "plainBg": false
+}

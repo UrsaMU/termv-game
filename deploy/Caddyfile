@@ -1,0 +1,32 @@
+# Terminal Velocity — game host edge
+# game.termv.ursamu.io → HTTP API :4203, /ws* → WS :4202
+# Client SPA lives on Vercel at termv.ursamu.io
+{
+	servers {
+		protocols h1 h2
+	}
+}
+
+game.termv.ursamu.io {
+	handle /ws* {
+		reverse_proxy 127.0.0.1:4202 {
+			header_up Host {host}
+			header_up X-Real-IP {remote_host}
+			header_up X-Forwarded-For {remote_host}
+			header_up X-Forwarded-Proto {scheme}
+			flush_interval -1
+		}
+	}
+
+	handle {
+		encode gzip
+		# Allow Vercel client + local dev
+		header Access-Control-Allow-Origin *
+		reverse_proxy 127.0.0.1:4203
+	}
+}
+
+# Optional: old court hostname → game host (or drop after cutover)
+court.ursamu.io {
+	redir https://game.termv.ursamu.io{uri} permanent
+}

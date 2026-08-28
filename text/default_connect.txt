@@ -1,0 +1,10 @@
+%ch%cc========================================%cn
+%ch%cc  T E R M I N A L   V E L O C I T Y%cn
+%ch%cc========================================%cn
+
+%ch%cwSprawl Goons: Upgraded%cn — 2d6 cyberpunk on UrsaMU.
+
+Type %ch%cycreate <name> <password>%cn to make a goon.
+Type %ch%cyconnect <name> <password>%cn to jack in.
+
+Web client: %ch%cctermv.ursamu.io%cn

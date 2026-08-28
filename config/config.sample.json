@@ -1,0 +1,81 @@
+{
+  "server": {
+    "standaloneTelnet": true,
+    "telnet": 4201,
+    "wsPort": 4202,
+    "ws": 4202,
+    "port": 4203,
+    "http": 4203,
+    "apiPort": 4203,
+    "db": "data/typegraph.db",
+    "corsOrigins": "https://termv.ursamu.io,http://localhost:5173,http://127.0.0.1:5173",
+    "plugins": [
+      "@ursamu/builder",
+      "@ursamu/channels",
+      "@ursamu/help",
+      "@ursamu/bbs",
+      "@ursamu/mail",
+      "@ursamu/wiki",
+      "@ursamu/jobs",
+      "@ursamu/sprawl-plugin",
+      "@ursamu/lang-plugin",
+      "@ursamu/map-plugin",
+      "@ursamu/web",
+      "@ursamu/site"
+    ]
+  },
+  "game": {
+    "name": "Terminal Velocity",
+    "description": "Sprawl Goons: Upgraded — 2d6 cyberpunk on UrsaMU",
+    "version": "0.1.0",
+    "playerStart": "1",
+    "text": {
+      "connect": "text/default_connect.txt"
+    },
+    "layout": {
+      "header": "[center(%ch%cc%b%0%b%cn,%1,%cm=%cn)]",
+      "divider": "[if(neq(words(%0),0), center(%ch%cc%b%0%b%cn,%1,%cm-%cn), repeat(%cm-%cn,%1))]",
+      "footer": "[repeat(%cm=%cn,%1)]"
+    },
+    "build": "sprawl"
+  },
+  "plugins": {
+    "channels": {
+      "defaults": [
+        { "name": "Public", "alias": "pub", "lock": "connected" },
+        { "name": "Admin", "alias": "ad", "lock": "connected admin+" },
+        { "name": "Street", "alias": "st", "lock": "connected" }
+      ]
+    },
+    "site": {
+      "serveRoot": true,
+      "title": ">> Terminal Velocity",
+      "skin": "termv",
+      "plainBg": false,
+      "themeDir": "theme",
+      "skinCss": "/site/theme/installed/termv/site.css",
+      "bannerImage": "/site/theme/installed/termv/imgs/header.png",
+      "telnet": "game.termv.ursamu.io:4201",
+      "playClient": "https://termv.ursamu.io/?embed=1",
+      "nav": [
+        { "id": "home", "label": "Home", "href": "/", "order": 10 },
+        { "id": "wiki", "label": "Wiki", "href": "/wiki/", "order": 20 },
+        { "id": "help", "label": "Help", "href": "/help/", "order": 30 },
+        { "id": "chargen", "label": "Goon", "href": "/chargen", "order": 40 },
+        { "id": "play", "label": "Play", "href": "/play", "order": 50 }
+      ]
+    },
+    "globals": {
+      "theme": {
+        "look": {
+          "exitColumns": 2,
+          "showShortDesc": true,
+          "showIdle": true,
+          "categorizeExits": true,
+          "showExitAliases": true,
+          "aliasCase": "preserve"
+        }
+      }
+    }
+  }
+}

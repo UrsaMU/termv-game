@@ -1,0 +1,18 @@
+.deno/
+.vscode/.deno/
+.env
+data/*.db
+data/*.db-wal
+data/*.db-shm
+data/typegraph.db/
+node_modules/
+run/
+logs/
+.ursamu.pid
+.ursamu-deno.pid
+.deno.local.json
+/wiki/
+.jwt_secret
+config/config.json
+# do NOT ignore vendor/sprawl — shipped with the game
+vendor/mush/

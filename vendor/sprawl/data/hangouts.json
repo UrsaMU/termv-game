@@ -1,0 +1,146 @@
+[
+  {
+    "slug": "static-lounge",
+    "name": "The Static Lounge",
+    "kind": "bar",
+    "blurb": "Synth-whiskey, dead channels on every wall. Deals under the hum."
+  },
+  {
+    "slug": "chrome-iodine",
+    "name": "Chrome & Iodine",
+    "kind": "clinic",
+    "blurb": "Walk-in meat repairs. Cash on the tray, no questions."
+  },
+  {
+    "slug": "noodle-noir",
+    "name": "Noodle Noir",
+    "kind": "eats",
+    "blurb": "Steam, broth, and booths deep enough to hide a body."
+  },
+  {
+    "slug": "dead-pixel",
+    "name": "The Dead Pixel",
+    "kind": "arcade",
+    "blurb": "VRcades, bootleg skins, and kids who never jack out."
+  },
+  {
+    "slug": "filter-tap",
+    "name": "The Filter",
+    "kind": "bar",
+    "blurb": "Shardstore front, aug-bar back. Everything drips neon."
+  },
+  {
+    "slug": "midnight-fax",
+    "name": "Midnight Fax",
+    "kind": "data",
+    "blurb": "Illegal uplink café. Coffee that tastes like copper."
+  },
+  {
+    "slug": "kneecap-kessel",
+    "name": "Kessel's Kneecaps",
+    "kind": "fight",
+    "blurb": "Bare-knuckle pit under a pawn shop. Bets in b¥."
+  },
+  {
+    "slug": "puppet-parlor",
+    "name": "Puppet Parlor",
+    "kind": "vice",
+    "blurb": "Rental shells, soft lights, harder contracts."
+  },
+  {
+    "slug": "ronin-grease",
+    "name": "Ronin's Grease",
+    "kind": "garage",
+    "blurb": "Bike racks, monofilament dust, free coffee if you tip."
+  },
+  {
+    "slug": "blood-softserve",
+    "name": "Blood & Softserve",
+    "kind": "eats",
+    "blurb": "Corp canteen irony. Pink ice cream, pink NDAs."
+  },
+  {
+    "slug": "ghost-bbs",
+    "name": "Ghost BBS Closet",
+    "kind": "data",
+    "blurb": "CRT glow and a modem bank that still answers."
+  },
+  {
+    "slug": "halogen-chapel",
+    "name": "Halogen Chapel",
+    "kind": "chapel",
+    "blurb": "Neon cross, sticky pews, hatch under the altar."
+  },
+  {
+    "slug": "wetware-wash",
+    "name": "Wetware Wash",
+    "kind": "clinic",
+    "blurb": "Rinse the chrome. Black-market lazarus on ice."
+  },
+  {
+    "slug": "skreemr-booth",
+    "name": "Skreemr Booth 9",
+    "kind": "media",
+    "blurb": "Live-cast alcove. Smile for the swarm."
+  },
+  {
+    "slug": "cartel-felt",
+    "name": "Syndicate Felt",
+    "kind": "vice",
+    "blurb": "Card tables, hidden SMGs, house always chrome."
+  },
+  {
+    "slug": "flow-canal-dock",
+    "name": "Canal Lock Bar",
+    "kind": "bar",
+    "blurb": "Water slap on the pilings. Smugglers tip in wet b¥."
+  },
+  {
+    "slug": "eswat-after",
+    "name": "After-Action",
+    "kind": "bar",
+    "blurb": "Off-duty badges, on-duty lies. Last call never ends."
+  },
+  {
+    "slug": "vat-nursery-cafe",
+    "name": "Creche Café",
+    "kind": "eats",
+    "blurb": "Nutrient fog and soft chairs. Don't ask what's growing."
+  },
+  {
+    "slug": "blackout-roof",
+    "name": "Blackout Roof",
+    "kind": "rooftop",
+    "blurb": "No lights, all skyline. Carbon scratches on the AC."
+  },
+  {
+    "slug": "datafax-shack",
+    "name": "Datafax Shack",
+    "kind": "data",
+    "blurb": "Relay hut on the edge. Soft hum, hard secrets."
+  },
+  {
+    "slug": "morgue-break",
+    "name": "Mercy Overflow Breakroom",
+    "kind": "clinic",
+    "blurb": "Cold drawers next door. Coffee that never warms."
+  },
+  {
+    "slug": "insurgent-cellar",
+    "name": "The Cellar",
+    "kind": "safehouse",
+    "blurb": "Manifestos, wires, and a bolted street hatch."
+  },
+  {
+    "slug": "floating-market-stall",
+    "name": "Night Market Stall 12",
+    "kind": "market",
+    "blurb": "Wet planks, hanging scales, a false back to the alley."
+  },
+  {
+    "slug": "chrome-alley-bench",
+    "name": "Chrome Alley Bench",
+    "kind": "street",
+    "blurb": "Clinic runoff on the brick. Best seat in the siege."
+  }
+]
