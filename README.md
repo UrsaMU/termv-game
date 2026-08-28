@@ -33,4 +33,4 @@ deno task start    # foreground + watch
 3. `sudo cp deploy/Caddyfile /etc/caddy/Caddyfile && sudo systemctl reload caddy`
 4. `deno task restart`
 
-Sprawl plugin is vendored at `vendor/sprawl` (also published as `@ursamu/sprawl-plugin` on JSR when available).
+Sprawl plugin: `jsr:@ursamu/sprawl-plugin@1.0.1` (local `vendor/sprawl` kept as offline fallback).
