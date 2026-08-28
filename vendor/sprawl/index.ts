@@ -104,7 +104,7 @@ const onReady = () => {
 
 export const plugin: IPlugin = {
   name: "sprawl",
-  version: "1.0.3",
+  version: "1.0.4",
   description:
     "Sprawl Goons: Upgraded — chargen, sheets, 2d6 action/combat, " +
     "hacking, vehicles, Flow atlas, street market.",
